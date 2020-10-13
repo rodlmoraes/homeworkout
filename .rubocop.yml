@@ -1,0 +1,125 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  RSpec:
+    Patterns:
+      - test.rb
+
+  RSpec/FactoryBot:
+    Patterns:
+      - spec/factories/**/*.rb
+
+  Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+
+Layout/HashAlignment:
+  Enabled: true
+
+Layout/EmptyLinesAroundBlockBody:
+  Exclude:
+    - 'db/schema.rb'
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - db/schema.rb
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 50
+  Enabled: true
+  Exclude:
+    - spec/**/*
+    - config/routes.rb
+    - db/schema.rb
+    - lib/tasks/*
+    - lib/validator/*
+
+Metrics/ModuleLength:
+  Max: 250
+
+Metrics/ClassLength:
+  Max: 250
+
+Metrics/AbcSize:
+  Max: 21
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
+Naming/PredicateName:
+  Enabled: false
+
+Rails/BulkChangeTable:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Enabled: true
+
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: true
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: true
+  Exclude:
+    - db/schema.rb
+    - db/migrate/*
+
+Style/WordArray:
+  EnforcedStyle: percent
+  MinSize: 4
+  Exclude:
+    - db/migrate/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/MultilineIfModifier:
+  Enabled: false

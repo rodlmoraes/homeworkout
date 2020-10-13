@@ -1,0 +1,82 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2020": true,
+    "jest": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "standard",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "import/prefer-default-export": "off",
+    "indent": [
+      "error",
+      2
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 110
+      }
+    ],
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-use-before-define": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
