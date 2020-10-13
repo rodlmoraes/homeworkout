@@ -1,27 +1,77 @@
-# README
+# HomeWorkout
 
-# homeworkout
-Projeto de aulas de academia em casa
+[![Maintainability](https://api.codeclimate.com/v1/badges/3c3ab653d7b738ad630f/maintainability)](https://codeclimate.com/github/CarolGalvao/esi-project/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3c3ab653d7b738ad630f/test_coverage)](https://codeclimate.com/github/CarolGalvao/esi-project/test_coverage)
+[![Build Status](https://travis-ci.org/CarolGalvao/esi-project.svg?branch=master)](https://travis-ci.org/CarolGalvao/esi-project)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Aplicação:** https://arcane-fjord-39570.herokuapp.com/
 
-Things you may want to cover:
+**PivotalTracker:** https://www.pivotaltracker.com/n/projects/2466931
 
-* Ruby version
+## Integrantes
 
-* System dependencies
+- Carolina Galvão de Oliveira - 10724135
+- João Francisco Cocca Fukuda - 10843566
+- Júlia Cristina de Brito Passos - 10723840
+- Rodrigo Lima de Moraes - 10724420
+- Rogério Ferreira Dos Santos - 10687882
+- Vinícius Bueno de Carvalho Rodrigues - 10346770
 
-* Configuration
+## Problema
 
-* Database creation
+Facilitar a comunicação entre educadores físicos e pessoas que querem fazer exercícios
 
-* Database initialization
+## Docs
 
-* How to run the test suite
+### Auth API
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+POST /api/teacher_auth - cadastro - body:
+{
+	"email": "prof@email.com",
+	"password": "senha",
+	"password_confirmation": "senha"
+}
+```
+```
+POST /api/teacher_auth/sign_in - login - body:
+{
+	"email": "prof@email.com",
+	"password": "senha"
+}
+```
+```
+DELETE /api/teacher_auth/sign_out - logout
+```
 
-* Deployment instructions
+todo request authenticado precisa de uid, client, e access-token no header, eles vem no header do cadastro ou do login
 
-* ...
+### Lessons API
+
+```
+GET / redireciona para /api/lessons
+```
+```
+GET /api/lessons - retorna as aulas e os professores atribuidos a elas (não precisa de autenticação)
+```
+```
+POST /api/lessons - criar uma aula - body:
+"lesson": {
+	"name": "yoga",
+	"description": "zen",
+	"link": "www.google.com/yoga"
+}
+```
+
+### Current Teacher API
+
+```
+GET /api/current_teacher/:id - retorna o professor que está autenticado
+```
+```
+PUT /api/current_teacher/:id - atualiza dados do professor - body:
+"teacher": {
+	"name": "joaninha de fogo",
+	"email": "joana@email.com"
+}
+```
