@@ -1,8 +1,8 @@
 # HomeWorkout
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/3c3ab653d7b738ad630f/maintainability)](https://codeclimate.com/github/CarolGalvao/esi-project/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/3c3ab653d7b738ad630f/test_coverage)](https://codeclimate.com/github/CarolGalvao/esi-project/test_coverage)
-[![Build Status](https://travis-ci.org/CarolGalvao/esi-project.svg?branch=master)](https://travis-ci.org/CarolGalvao/esi-project)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e1b8cbb4f1b371cae496/maintainability)](https://codeclimate.com/github/rodlmoraes/homeworkout/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e1b8cbb4f1b371cae496/test_coverage)](https://codeclimate.com/github/rodlmoraes/homeworkout/test_coverage)
+[![Build Status](https://travis-ci.org/rodlmoraes/homeworkout.svg?branch=main)](https://travis-ci.org/rodlmoraes/homeworkout)
 
 **Aplicação:** https://arcane-fjord-39570.herokuapp.com/
 

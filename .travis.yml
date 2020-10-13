@@ -3,12 +3,12 @@ rvm:
   - 2.7.0
 env:
   - DB=pgsql
-  - CC_TEST_REPORTER_ID=fb43fe870fb2a6d1517b0f6ffc783d023ee258395112255982bfd5672bc47f83
+  - CC_TEST_REPORTER_ID=c02cb25f551705f2b3e267fdf1cdd0f1d2a69882c7be03b535b6d17527a1e65d
 services:
   - postgresql
 addons:
   code_climate:
-      repo_token: fb43fe870fb2a6d1517b0f6ffc783d023ee258395112255982bfd5672bc47f83
+      repo_token: c02cb25f551705f2b3e267fdf1cdd0f1d2a69882c7be03b535b6d17527a1e65d
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
