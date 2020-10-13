@@ -1,23 +1,65 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { createStyles, makeStyles } from '@material-ui/core/styles'
+import { Typography, Grid } from '@material-ui/core'
 
-export default () => (
-  <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
-    <div className="jumbotron jumbotron-fluid bg-transparent">
-      <div className="container secondary-color">
-        <h1 className="display-4">Food Recipes</h1>
-        <p className="lead">
-          A curated list of recipes for the best homemade meal and delicacies.
-        </p>
-        <hr className="my-4" />
-        <Link
-          to="/recipes"
-          className="btn btn-lg custom-button"
-          role="button"
-        >
-          View Recipes
-        </Link>
+import Header from '../components/Header'
+import TextInput from '../components/TextInput'
+import LessonCard from '../components/LessonCard'
+import api from '../services/api'
+
+type Lesson = {
+  name: string
+  description: string
+  link: string
+}
+
+export default function LessonList() {
+  const [lessons, setLessons] = useState<Lesson[]>([])
+  const [query, setQuery] = useState('')
+  const classes = useStyles()
+
+  useEffect(() => {
+    listLessons(query).then(setLessons)
+  }, [query])
+
+  return (
+    <>
+      <Header/>
+      <div className={classes.root}>
+        <Typography variant='h3' color='textPrimary'>Aulas disponíveis</Typography>
+        <TextInput
+          label='Busca'
+          onChange= {e => { setQuery(e.target.value) }}
+          placeholder='Nome ou descrição da aula'
+          value={query}
+        />
+        <Grid container spacing={3}>
+          {lessons.map(({ name, description, link }, key) => (<Grid key={key} item xs={3}>
+            <LessonCard name={name} description={description} link={link}/>
+          </Grid>))}
+        </Grid>
       </div>
-    </div>
-  </div>
-);
+    </>
+  )
+}
+
+const listLessons = async (query: string) => {
+  const { data } = await api.get(`/lessons?query=${query}`)
+  return data
+}
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+      padding: '2rem',
+      alignItems: 'center',
+      borderRadius: 15,
+      margin: '4rem',
+    },
+    button: {
+      marginTop: '0.8rem',
+    },
+  }),
+)

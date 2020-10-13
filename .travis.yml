@@ -8,16 +8,23 @@ services:
   - postgresql
 addons:
   code_climate:
-      repo_token: c02cb25f551705f2b3e267fdf1cdd0f1d2a69882c7be03b535b6d17527a1e65d
+    repo_token: c02cb25f551705f2b3e267fdf1cdd0f1d2a69882c7be03b535b6d17527a1e65d
+cache:
+  directories:
+    - node_modules
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
+  - yarn install
 script:
   - RAILS_ENV=test bundle exec rails db:migrate
   - bundle exec rspec
+  - yarn test -- --coverage
+  - yarn tsc
+  - yarn lint
 after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - bundle exec codeclimate-test-reporter

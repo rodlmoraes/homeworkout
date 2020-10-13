@@ -21,5 +21,7 @@ Devise.setup do |_config|
 
   # config.password_length = 6..128
 
+  # rubocop:disable Layout/LineLength
   # config.email_regexp = /\A(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))\z/i
+  # rubocop:enable Layout/LineLength
 end
