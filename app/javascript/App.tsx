@@ -5,12 +5,16 @@ import Routes from './Routes'
 import { AuthProvider } from './contexts/auth'
 import theme from './theme'
 
-export default function App() {
+type AppProps = {
+  route?: string
+}
+
+export default function App({ route }: AppProps) {
   return (
     <ThemeProvider theme={theme} >
       <CssBaseline />
       <AuthProvider>
-        <Routes />
+        <Routes route={route} />
       </AuthProvider>
     </ThemeProvider>
   )

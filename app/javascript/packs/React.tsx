@@ -7,8 +7,11 @@ import ReactDOM from 'react-dom'
 import App from '../App'
 
 document.addEventListener('DOMContentLoaded', () => {
+  const element = document.querySelector('[data-react-component]')
+  const { props } = JSON.parse(element.getAttribute('data-react-component'))
+
   ReactDOM.render(
-    <App />,
+    <App route={props.route} />,
     document.body.appendChild(document.createElement('div')),
   )
 })

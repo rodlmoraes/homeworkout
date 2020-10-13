@@ -19,12 +19,14 @@ export default function Login() {
       <Card className={classes.root}>
         <Typography variant='h3'>Entre e adicione novas aulas!</Typography>
         <TextInput
+          name='Email'
           label='Email'
           onChange= {e => { setEmail(e.target.value) }}
           placeholder='Digite aqui seu email'
           value={email}
         />
         <TextInput
+          name='Senha'
           label='Senha'
           onChange= {e => { setPassword(e.target.value) }}
           placeholder='Digite aqui sua senha'

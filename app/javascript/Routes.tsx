@@ -6,7 +6,13 @@ import LessonList from './pages/LessonList'
 import LessonForm from './pages/LessonForm'
 import Login from './pages/Login'
 
-export default function Routes() {
+type RoutesProps = {
+  route?: string
+}
+
+// fallback route entered by the user, it can be useful in the future
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function Routes({ route }: RoutesProps) {
   const { signedIn } = useAuth()
 
   return (
