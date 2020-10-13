@@ -54,7 +54,6 @@ end
 
 group :test do
   gem 'capybara', '~> 3.33'
-  gem 'capybara-screenshot', '~> 1.0'
   gem 'cucumber-rails', '~> 2.2', require: false
   gem 'database_cleaner', '~> 1.8'
   gem 'selenium-webdriver', '~> 3.142'
