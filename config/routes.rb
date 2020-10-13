@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'home#index'
+  root 'pages#index'
 
   mount_devise_token_auth_for 'Teacher', at: 'api/teacher_auth'
 
@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     resources :lessons, only: [:index, :create]
     resources :current_teacher, only: [:show, :update]
   end
+
+  get '/:route', to: 'pages#fallback'
 end

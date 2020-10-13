@@ -39,18 +39,21 @@ export default function LessonForm() {
       <Card className={classes.root}>
         <Typography variant='h3'>Cadastro de Aula</Typography>
         <TextInput
+          name='Nome da aula'
           label='Nome da aula'
           onChange= {e => { setName(e.target.value) }}
           placeholder='Aula de'
           value={name}
         />
         <TextInput
+          name='Link da Aula'
           label='Link da Aula'
           onChange= {e => { setLink(e.target.value) }}
           placeholder='Link do Youtube'
           value={link}
         />
         <TextInput
+          name='Descrição da Aula'
           label='Descrição da Aula'
           multiline
           onChange= {e => { setDescription(e.target.value) }}

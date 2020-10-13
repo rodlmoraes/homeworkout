@@ -28,6 +28,7 @@ export default function LessonList() {
       <div className={classes.root}>
         <Typography variant='h3' color='textPrimary'>Aulas disponíveis</Typography>
         <TextInput
+          name='Busca'
           label='Busca'
           onChange= {e => { setQuery(e.target.value) }}
           placeholder='Nome ou descrição da aula'
