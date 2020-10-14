@@ -1,11 +1,14 @@
 import React, { createContext, PropsWithChildren, useEffect, useState, useContext } from 'react'
 
-import { signIn, loadAuth } from '../services/auth'
+import { signIn, signUp, loadAuth, signOut } from '../services/auth'
+import { useAlert } from './alert'
 
 export type AuthContextData = {
   signedIn: boolean,
   teacher: Teacher | null,
-  signIn: (email: string, password: string) => Promise<void>
+  signIn: (email: string, password: string) => Promise<void>,
+  signUp: (email: string, password: string) => Promise<void>,
+  signOut: () => Promise<void>
 }
 
 export type Teacher = {
@@ -17,6 +20,7 @@ export type Teacher = {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export function AuthProvider({ children }: PropsWithChildren<unknown>) {
+  const { showAlert } = useAlert()
   const [teacher, setTeacher] = useState<Teacher | null>(null)
 
   useEffect(() => {
@@ -25,12 +29,28 @@ export function AuthProvider({ children }: PropsWithChildren<unknown>) {
   }, [])
 
   const authSignIn = async (email: string, password: string) => {
-    const loadedTeacher = await signIn(email, password)
+    const loadedTeacher = await signIn(email, password, showAlert)
     setTeacher(loadedTeacher)
   }
 
+  const authSignUp = async (email: string, password: string) => {
+    const loadedTeacher = await signUp(email, password, showAlert)
+    setTeacher(loadedTeacher)
+  }
+
+  const authSignOut = async () => {
+    const isSignedOut = await signOut(showAlert)
+    if (isSignedOut) setTeacher(null)
+  }
+
   return (
-    <AuthContext.Provider value={{ signedIn: !!teacher, signIn: authSignIn, teacher }}>
+    <AuthContext.Provider value={{
+      signedIn: !!teacher,
+      signIn: authSignIn,
+      signUp: authSignUp,
+      signOut: authSignOut,
+      teacher,
+    }}>
       {children}
     </AuthContext.Provider>
   )

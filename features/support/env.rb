@@ -5,12 +5,15 @@
 # files.
 require 'cucumber/rails'
 require 'capybara'
+require 'capybara/rails'
 require 'capybara/cucumber'
-include Warden::Test::Helpers
+require 'database_cleaner/active_record'
 
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome # roda no navegador
-  # config.default_driver = :selenium_chrome_headless # roda com o nageador em background
+  config.default_driver = :selenium_chrome # or :selenium_chrome_headless
+  config.server_port = 64793
+  # config.run_server = false
+  # config.app_host = 'http://localhost:3000'
 end
 
 # frozen_string_literal: true
@@ -39,12 +42,8 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-begin
-  DatabaseCleaner.strategy = :transaction
-rescue NameError
-  raise 'You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it.'
-end
 
+DatabaseCleaner.strategy = :truncation
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
 #

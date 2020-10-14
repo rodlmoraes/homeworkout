@@ -1,14 +1,14 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 
 import LessonList from '../../pages/LessonList'
 
-test('renders LessonList', () => {
-  const { getByText } = render(<LessonList />)
-  getByText('Aulas disponíveis')
-})
+jest.mock('../../services/api', () => ({
+  get: () => Promise.resolve({ data: [] }),
+}))
 
-test('renders HeaderLessonList', () => {
+test('renders LessonList', async () => {
   const { getByText } = render(<LessonList />)
-  getByText('HomeWorkout')
+  await waitFor(() => getByText('Aulas disponíveis'))
+  await waitFor(() => getByText('HomeWorkout'))
 })

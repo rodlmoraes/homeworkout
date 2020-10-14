@@ -23,6 +23,15 @@ Facilitar a comunicação entre educadores físicos e pessoas que querem fazer e
 
 ## Docs
 
+### Para rodar o projeto
+```
+rails s
+```
+Rodar o comando a baixo em uma aba separada do terminal para ter o live-reload no javascript, caso contrário é necessário recarregar a página
+```
+./bin/webpack-dev-server
+```
+
 ### Auth API
 
 ```
@@ -74,4 +83,13 @@ PUT /api/current_teacher/:id - atualiza dados do professor - body:
 	"name": "joaninha de fogo",
 	"email": "joana@email.com"
 }
+```
+
+### Sobre o Cucumber
+O webpacker as vezes está compilando para testes o ambiente de desenvolvimento, caso tenha problemas com isso executar
+```
+rm -rf public/packs*/
+```
+```
+RAILS_ENV=test NODE_ENV=test bundle exec rails webpacker:compile
 ```
