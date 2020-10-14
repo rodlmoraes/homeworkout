@@ -56,7 +56,7 @@ end
 group :test do
   gem 'capybara', '~> 3.33'
   gem 'cucumber-rails', '~> 2.2', require: false
-  gem 'database_cleaner', '~> 1.8'
+  gem 'database_cleaner-active_record', '~> 1.8'
   gem 'selenium-webdriver', '~> 3.142'
   gem 'shoulda-matchers', '~> 4.4'
   gem 'simplecov', '~> 0.17.1'
