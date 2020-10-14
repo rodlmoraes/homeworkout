@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import { useAuth } from '../contexts/auth'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -24,6 +25,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const history = useHistory()
+  const { signOut } = useAuth()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -33,19 +35,19 @@ export default function Header() {
     setAnchorEl(null)
   }
 
-  const handleChangetoLogin = () => {
+  const toLogin = () => {
     history.push('/entrar')
   }
 
-  const handleChangetoClassRegister = () => {
+  const toSignUp = () => {
+    history.push('/cadastrar')
+  }
+
+  const toCreateLesson = () => {
     history.push('/cadastrar-aula')
   }
 
-  const handleChangetoClassList = () => {
-    history.push('/')
-  }
-
-  const handleChangetoAboutUs = () => {
+  const toLessonList = () => {
     history.push('/')
   }
 
@@ -71,15 +73,17 @@ export default function Header() {
           }}
           getContentAnchorEl={null}
         >
-          <MenuItem onClick={handleChangetoLogin}>Login</MenuItem>
-          <MenuItem onClick={handleChangetoClassRegister}>Cadastrar aula</MenuItem>
-          <MenuItem onClick={handleChangetoClassList}>Lista de aulas</MenuItem>
-          <MenuItem onClick={handleChangetoAboutUs}>Sobre nós</MenuItem>
+          <MenuItem onClick={toLogin}>Entrar</MenuItem>
+          <MenuItem onClick={toSignUp}>Cadastrar</MenuItem>
+          <MenuItem onClick={signOut}>Sair</MenuItem>
+          <MenuItem onClick={toCreateLesson}>Cadastrar aula</MenuItem>
+          <MenuItem onClick={toLessonList}>Lista de aulas</MenuItem>
+          <MenuItem onClick={toLessonList}>Sobre nós</MenuItem>
         </Menu>
         <Typography variant='h6'>
             HomeWorkout
         </Typography>
-        <IconButton color='inherit' onClick={handleChangetoLogin} >
+        <IconButton color='inherit' onClick={toLogin} >
           <AccountCircle />
         </IconButton>
       </Toolbar>

@@ -7,9 +7,11 @@ import { Typography, Card } from '@material-ui/core'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
+import { useAlert } from '../contexts/alert'
 
 export default function LessonForm() {
   const history = useHistory()
+  const { showAlert } = useAlert()
 
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
@@ -24,10 +26,10 @@ export default function LessonForm() {
           description,
         },
       })
-      alert('Cadastro realizado com sucesso!')
+      showAlert('Aula cadastrada!')
       history.push('/')
     } catch {
-      alert('Erro no cadastro!')
+      alert('Erro ao tentar cadastrar aula!')
     }
   }
 

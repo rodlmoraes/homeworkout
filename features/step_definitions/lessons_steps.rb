@@ -1,27 +1,40 @@
-Dado('que existem aulas disponíves') do
-  teacher = FactoryBot.create(:teacher)
-  FactoryBot.create_list(:lesson, 5, name: 'boxe', teacher: teacher)
+Dado('que o professor esteja cadastrado') do
+  visit 'cadastrar'
+  fill_in 'Email',	with: 'test@test.com'
+  fill_in 'Senha',	with: '123456'
+  click_button 'Cadastrar'
 end
 
-Quando('ele entrar na listagem de aula') do
-  visit '/'
-  Capybara.using_wait_time(180) do
-    fill_in 'Busca',	with: ''
-  end
-end
-
-Então('todas as aulas cadastradas devem aparecer') do
-  pending # expect(page).to have_content('boxe')
-end
-
-Quando('ele criar uma aula com todos os dados necessários') do
-  visit '/cadastrar-aula'
+Quando('ele visita a página de cadastrar aulas e preenche o formulário') do
   fill_in 'Nome da aula',	with: 'Yoga'
-  fill_in 'Link da Aula',	with: 'https://www.youtube.com/watch?v=kozEd1SnwmI&ab_channel=PriLeiteYoga'
+  fill_in 'Link da Aula',	with: 'https://www.youtube.com/link-aula'
   fill_in 'Descrição da Aula',	with: 'Venha ficar flexível'
   click_button 'Salvar Cadastro'
 end
 
-Então('quero que a aula tenha sido criada') do
-  pending # Write code here that turns the phrase above into concrete actions
+Então('o cadastro da aula deve ser efetuado') do
+  expect(page).to have_content('Yoga')
+  expect(page).to have_content('Aula cadastrada!')
+  expect(current_path).to eq('/')
+end
+
+Dado('que existem aulas disponíves') do
+  visit 'cadastrar'
+  fill_in 'Email',	with: 'test@test.com'
+  fill_in 'Senha',	with: '123456'
+  click_button 'Cadastrar'
+
+  fill_in 'Nome da aula',	with: 'Yoga'
+  fill_in 'Link da Aula',	with: 'https://www.youtube.com/link-aula'
+  fill_in 'Descrição da Aula',	with: 'Venha ficar flexível'
+  click_button 'Salvar Cadastro'
+end
+
+Quando('o usuário entrar na listagem de aula') do
+  visit '/'
+  fill_in 'Busca',	with: ''
+end
+
+Então('todas as aulas cadastradas devem aparecer') do
+  expect(page).to have_content('Yoga')
 end

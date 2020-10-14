@@ -1,16 +1,16 @@
 #language:pt
 
-Funcionalidade: Manter dados de Lessons através da API
+Funcionalidade: Manter dados de Lesson
 Como um usuário do sistema
-Eu quero realizar as requisições na API
-Para manipular as informações das aulas cadastradas
+Eu quero ter acesso às aulas
+Para interagir com aulas cadastradas
 
 Cenário: Criar uma aula
-Dado que o professor esteja logado
-Quando ele criar uma aula com todos os dados necessários
-Então quero que a aula tenha sido criada
+Dado que o professor esteja cadastrado
+Quando ele visita a página de cadastrar aulas e preenche o formulário
+Então o cadastro da aula deve ser efetuado
 
-Cenário: Listar aulas
+Cenário: Ver lista de aulas
 Dado que existem aulas disponíves
-Quando ele entrar na listagem de aula
+Quando o usuário entrar na listagem de aula
 Então todas as aulas cadastradas devem aparecer
