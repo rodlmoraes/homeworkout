@@ -8,6 +8,9 @@
 
 **PivotalTracker:** https://www.pivotaltracker.com/n/projects/2466931
 
+**Projetos anteriores:** https://github.com/rodlmoraes/esi-project-interface
+                         https://github.com/CarolGalvao/esi-project 
+
 ## Integrantes
 
 - Carolina Galvão de Oliveira - 10724135
