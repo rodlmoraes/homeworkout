@@ -10,16 +10,16 @@ import Button from '@material-ui/core/Button'
 import Modal from '@material-ui/core/Modal'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
-
-import TeacherImg from '../../assets/images/9k.png'
+import LogoImg from '../../assets/images/Logo.jpeg'
 
 type LessonCardProps = {
   name: string
   description: string
   link: string
+  image: string
 }
 
-export default function LessonCard({ name, description, link }: LessonCardProps) {
+export default function LessonCard({ name, description, link, image }: LessonCardProps) {
   const classes = useStyles()
   const [modalIsOpen, setModalIsOpen] = useState(false)
   return (
@@ -29,7 +29,7 @@ export default function LessonCard({ name, description, link }: LessonCardProps)
       />
       <CardMedia
         className={classes.media}
-        image={TeacherImg}
+        image={image || LogoImg } 
         title={name}
       />
       <CardContent>

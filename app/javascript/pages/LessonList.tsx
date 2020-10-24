@@ -11,6 +11,7 @@ type Lesson = {
   name: string
   description: string
   link: string
+  image: string
 }
 
 export default function LessonList() {
@@ -35,8 +36,13 @@ export default function LessonList() {
           value={query}
         />
         <Grid container spacing={3}>
-          {lessons.map(({ name, description, link }, key) => (<Grid key={key} item xs={3}>
-            <LessonCard name={name} description={description} link={link}/>
+          {lessons.map(({ name, description, link, image }, key) => (<Grid key={key} item xs={3}>
+            <LessonCard 
+              name={name} 
+              description={description} 
+              link={link} 
+              image={image}
+            />
           </Grid>))}
         </Grid>
       </div>

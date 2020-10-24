@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import { Typography, Card } from '@material-ui/core'
-
+import UploadIcon from '@material-ui/icons/AccountCircle'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
 import { useAlert } from '../contexts/alert'
+import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
 
 export default function LessonForm() {
   const history = useHistory()
@@ -16,6 +17,7 @@ export default function LessonForm() {
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [description, setDescription] = useState('')
+  const [image, setImage] = useState('')
 
   const handleCreateClass = async () => {
     try {
@@ -24,6 +26,7 @@ export default function LessonForm() {
           name,
           link,
           description,
+          image,
         },
       })
       showAlert('Aula cadastrada!')
@@ -31,6 +34,12 @@ export default function LessonForm() {
     } catch {
       alert('Erro ao tentar cadastrar aula!')
     }
+  }
+
+  const handleChange = (event) => {
+    setImage(
+      URL.createObjectURL(event.target.files[0])
+    )
   }
 
   const classes = useStyles()
@@ -62,6 +71,27 @@ export default function LessonForm() {
           placeholder='Descrição'
           value={description}
         />
+        <input type="file"
+               id="fileUploadButton"
+               style={{ display: 'none' }}
+               onChange={handleChange}
+        />
+        <label htmlFor={'fileUploadButton'}>
+          <Button
+            color="secondary"
+            variant="contained"
+            component="span"
+            startIcon={
+              <SvgIcon fontSize="small">
+                <UploadIcon />
+              </SvgIcon>
+            }
+          >
+
+            Escolha sua Imagem
+          </Button>
+        </label>
+        <img src={image}/>
         <Button
           className={classes.button}
           color='secondary'
@@ -74,6 +104,15 @@ export default function LessonForm() {
       </Card>
     </>
   )
+}
+
+function encodeImageFileAsURL(element) {
+  var file = element.files[0];
+  var reader = new FileReader();
+  reader.onloadend = function() {
+    console.log('RESULT', reader.result)
+  }
+  reader.readAsDataURL(file);
 }
 
 const useStyles = makeStyles(() =>
