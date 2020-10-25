@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import { Typography, Card } from '@material-ui/core'
-import UploadIcon from '@material-ui/icons/AccountCircle'
+import PublishIcon from '@material-ui/icons/Publish';
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
 import { useAlert } from '../contexts/alert'
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
+import { uploadFile } from 'react-s3'
 
 export default function LessonForm() {
   const history = useHistory()
@@ -37,9 +38,9 @@ export default function LessonForm() {
   }
 
   const handleChange = (event) => {
-    setImage(
-      URL.createObjectURL(event.target.files[0])
-    )
+    uploadFile(event.target.files[0], config)
+    .then(({location}) => setImage(location))
+    .catch(err => console.error(err))
   }
 
   const classes = useStyles()
@@ -78,23 +79,23 @@ export default function LessonForm() {
         />
         <label htmlFor={'fileUploadButton'}>
           <Button
-            color="secondary"
+            className={classes.button}
+            color="primary"
             variant="contained"
             component="span"
             startIcon={
               <SvgIcon fontSize="small">
-                <UploadIcon />
+                <PublishIcon />
               </SvgIcon>
             }
           >
-
             Escolha sua Imagem
           </Button>
         </label>
         <img src={image}/>
         <Button
           className={classes.button}
-          color='secondary'
+          color='primary'
           onClick={handleCreateClass}
           size='large'
           variant='contained'
@@ -104,6 +105,14 @@ export default function LessonForm() {
       </Card>
     </>
   )
+}
+
+const config = {
+  bucketName: 'homeworkout-workteam',
+  dirName: 'lesson_photos', 
+  region: 'us-east-1',
+  accessKeyId: 'AKIAJYSZUCE6IC54LD7A',
+  secretAccessKey: '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',
 }
 
 function encodeImageFileAsURL(element) {
