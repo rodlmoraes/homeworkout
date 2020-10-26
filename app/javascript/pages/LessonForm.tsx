@@ -111,8 +111,8 @@ const config = {
   bucketName: 'homeworkout-workteam',
   dirName: 'lesson_photos',
   region: 'us-east-1',
-  accessKeyId: 'AKIAJYSZUCE6IC54LD7A',
-  secretAccessKey: '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',
+  accessKeyId: 'AKIAJDKHXBF6CEXNQPIQ',
+  secretAccessKey: '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',
 }
 
 const useStyles = makeStyles(() =>
