@@ -24,7 +24,6 @@ module Homeworkout
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.eager_load_paths << Rails.root.join('lib')
-    config.hosts << "eae040012893.ngrok.io"
 
     config.generators do |g|
       g.test_framework :rspec

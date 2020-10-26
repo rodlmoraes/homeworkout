@@ -33,5 +33,9 @@ module Api
     def show_params
       params.permit(:id)
     end
+
+    def show_params
+      params.permit(:id)
+    end
   end
 end
