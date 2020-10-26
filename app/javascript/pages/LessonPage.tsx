@@ -42,7 +42,7 @@ export default function LessonPage({ match }:Props) {
   )
 }
 
-const listLessons = async match => {
+const listLessons = async (match) => {
   const { data } = await api.get(`/lessons?query=${match.params.id}`)
   return data[0]
 }
