@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
 
   get '/:route', to: 'pages#fallback'
+  get '/aula/:id', to: 'pages#fallback'
 end

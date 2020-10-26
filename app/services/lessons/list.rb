@@ -17,6 +17,7 @@ module Lessons
         .includes(:teacher)
         .where('name LIKE ?', "%#{@query}%")
         .or(Lesson.includes(:teacher).where('description LIKE ?', "%#{@query}%"))
+        .or(Lesson.includes(:teacher).where(id: @query))
     end
   end
 end
