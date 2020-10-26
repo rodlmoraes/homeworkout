@@ -7,6 +7,7 @@ import LessonForm from './pages/LessonForm'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import TeacherInfo from './pages/TeacherInfo'
+import AboutUs from './pages/AboutUs'
 
 type RoutesProps = {
   route?: string
@@ -17,12 +18,11 @@ type RoutesProps = {
 export default function Routes({ route }: RoutesProps) {
   const { signedIn } = useAuth()
 
-  const redirectPath = signedIn ? '/cadastrar-aula' : '/'
-
   return (
     <BrowserRouter>
       <Switch>
         <Route path='/' component={LessonList} exact />
+        <Route path='/sobre-nos' component={AboutUs} exact />
         <PrivateRoute
           path='/cadastrar-aula'
           component={LessonForm}
@@ -47,7 +47,7 @@ export default function Routes({ route }: RoutesProps) {
           showCondition={signedIn}
           redirectPath='/entrar'
         />
-        <Redirect to={redirectPath} />
+        <Redirect to='/' />
       </Switch>
     </BrowserRouter>
   )
@@ -60,7 +60,7 @@ const PrivateRoute = ({
   ...rest
 }: { showCondition: boolean, redirectPath: string } & RouteProps,
 ) => (
-  <Route {...rest}
+  <Route exact {...rest}
     render={
       props => showCondition ? <Component {...props} /> : <Redirect to={{ pathname: redirectPath }} />
     }
