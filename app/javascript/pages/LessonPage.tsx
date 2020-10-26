@@ -11,7 +11,18 @@ type Lesson = {
   link: string
 }
 
-export default function LessonPage({ match }) {
+type Props = {
+  match: {
+    params: {
+      id: number.isRequired
+      name: string
+      description: string
+      link: string
+    }
+  }
+}
+
+export default function LessonPage({ match }:Props) {
   const [lesson, setLessons] = useState<Lesson>({ name: 'Aula não encontrada', description: '', link: '' })
   const classes = useStyles()
 
