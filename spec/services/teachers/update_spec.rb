@@ -6,12 +6,14 @@ RSpec.describe Teachers::Update, type: :service do
   let!(:teacher) { create(:teacher) }
   let(:name) { 'Rodrigo' }
   let(:email) { 'rodrigo@email.com' }
+  let(:image) { 'image' }
 
   let(:teacher_params) do
     {
       name: name,
       email: email,
-      teacher: teacher
+      teacher: teacher,
+      image: image
     }
   end
 

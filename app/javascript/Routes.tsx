@@ -6,6 +6,7 @@ import LessonList from './pages/LessonList'
 import LessonForm from './pages/LessonForm'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import TeacherInfo from './pages/TeacherInfo'
 
 type RoutesProps = {
   route?: string
@@ -39,6 +40,12 @@ export default function Routes({ route }: RoutesProps) {
           component={SignUp}
           showCondition={!signedIn}
           redirectPath='/cadastrar-aula'
+        />
+        <PrivateRoute
+          path='/informacoes-do-professor'
+          component={TeacherInfo}
+          showCondition={signedIn}
+          redirectPath='/entrar'
         />
         <Redirect to={redirectPath} />
       </Switch>

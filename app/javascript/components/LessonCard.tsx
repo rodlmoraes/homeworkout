@@ -29,7 +29,7 @@ export default function LessonCard({ name, description, link, image }: LessonCar
       />
       <CardMedia
         className={classes.media}
-        image={image || LogoImg } 
+        image={image || LogoImg }
         title={name}
       />
       <CardContent>

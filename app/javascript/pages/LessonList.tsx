@@ -37,10 +37,10 @@ export default function LessonList() {
         />
         <Grid container spacing={3}>
           {lessons.map(({ name, description, link, image }, key) => (<Grid key={key} item xs={3}>
-            <LessonCard 
-              name={name} 
-              description={description} 
-              link={link} 
+            <LessonCard
+              name={name}
+              description={description}
+              link={link}
               image={image}
             />
           </Grid>))}

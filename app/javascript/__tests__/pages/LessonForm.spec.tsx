@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import LessonForm from '../../pages/LessonForm'
 
 jest.mock('react-s3', () => ({
-  uploadFile : () => Promise.resolve({ data: [] }),
+  uploadFile: () => Promise.resolve({ data: [] }),
 }))
 
 test('renders LessonForm', () => {

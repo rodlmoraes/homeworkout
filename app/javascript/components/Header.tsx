@@ -51,6 +51,10 @@ export default function Header() {
     history.push('/')
   }
 
+  const toTeacherInfo = () => {
+    history.push('/informacoes-do-professor')
+  }
+
   return (
     <AppBar position='static'>
       <Toolbar className={classes.toolbar}>
@@ -68,7 +72,7 @@ export default function Header() {
           }}
           PaperProps={{
             style: {
-              width: '10rem',
+              width: '12rem',
             },
           }}
           getContentAnchorEl={null}
@@ -79,6 +83,7 @@ export default function Header() {
           <MenuItem onClick={toCreateLesson}>Cadastrar aula</MenuItem>
           <MenuItem onClick={toLessonList}>Lista de aulas</MenuItem>
           <MenuItem onClick={toLessonList}>Sobre nós</MenuItem>
+          <MenuItem onClick={toTeacherInfo}>Suas informações</MenuItem>
         </Menu>
         <Typography variant='h6'>
             HomeWorkout
