@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'Teacher', at: 'api/teacher_auth'
 
   namespace 'api' do
-    resources :lessons, only: [:index, :create]
+    resources :lessons, only: [:index, :create, :show]
     resources :current_teacher, only: [:show, :update]
   end
 

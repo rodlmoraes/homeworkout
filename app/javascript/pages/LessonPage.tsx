@@ -11,8 +11,8 @@ type Lesson = {
   link: string
 }
 
-export default function LessonList({match}) {
-  const [lesson, setLessons] = useState<Lesson>({name: `${match.params.id}`, description:  `Aula ${match.params.id} não encontrada.`, link: 'https://www.youtube.com/embed/dQw4w9WgXcQ'})
+export default function LessonPage({ match }) {
+  const [lesson, setLessons] = useState<Lesson>({ name: 'Aula não encontrada', description: '', link: '' })
   const classes = useStyles()
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function LessonList({match}) {
   )
 }
 
-const listLessons = async (match) => {
+const listLessons = async match => {
   const { data } = await api.get(`/lessons?query=${match.params.id}`)
   return data[0]
 }
