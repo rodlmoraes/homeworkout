@@ -1,6 +1,6 @@
 module Api
   class LessonsController < ApplicationController
-    before_action :authenticate_teacher!, except: [:index]
+    before_action :authenticate_teacher!, except: [:index, :show]
 
     def index
       lessons = Lessons::List.call(index_params)
@@ -14,6 +14,11 @@ module Api
       render json: lesson, status: :ok
     end
 
+    def show
+      lesson = Lessons::Get.call(show_params)
+
+      render json: lesson, status: :ok
+    end
     private
 
     def index_params
@@ -22,6 +27,9 @@ module Api
 
     def create_params
       params[:lesson].permit(:name, :description, :link).merge(teacher: current_teacher)
+    end
+    def show_params
+      params.permit(:id)
     end
   end
 end
