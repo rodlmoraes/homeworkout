@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import TextInput from '../components/TextInput'
 import { useAuth } from '../contexts/auth'
 import Header from '../components/Header'
+import SecretInput from '../components/SecretInput'
 
 export default function SignUp() {
   const { signUp } = useAuth()
@@ -25,13 +26,9 @@ export default function SignUp() {
           placeholder='Digite aqui seu email'
           value={email}
         />
-        <TextInput
-          name='Senha'
-          label='Senha'
+        <SecretInput
           onChange= {e => { setPassword(e.target.value) }}
-          placeholder='Digite aqui sua senha'
           value={password}
-          hidden
         />
         <Button
           className={classes.button}
