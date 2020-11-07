@@ -25,7 +25,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const history = useHistory()
-  const { signOut } = useAuth()
+  const { signedIn, signOut } = useAuth()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -63,6 +63,7 @@ export default function Header() {
     <AppBar position='static'>
       <Toolbar className={classes.toolbar}>
         <IconButton
+          data-testid='menu-button'
           onClick={handleClick}
         >
           <MenuIcon />
@@ -81,18 +82,23 @@ export default function Header() {
           }}
           getContentAnchorEl={null}
         >
-          <MenuItem onClick={toLogin}>Entrar</MenuItem>
-          <MenuItem onClick={toSignUp}>Cadastrar</MenuItem>
-          <MenuItem onClick={signOut}>Sair</MenuItem>
-          <MenuItem onClick={toCreateLesson}>Cadastrar aula</MenuItem>
           <MenuItem onClick={toLessonList}>Lista de aulas</MenuItem>
-          <MenuItem onClick={toTeacherInfo}>Suas informações</MenuItem>
+          { signedIn
+            ? (<>
+              <MenuItem onClick={toCreateLesson}>Cadastrar aula</MenuItem>
+              <MenuItem onClick={toTeacherInfo}>Suas informações</MenuItem>
+              <MenuItem onClick={signOut}>Sair</MenuItem>
+            </>)
+            : (<>
+              <MenuItem onClick={toLogin}>Entrar</MenuItem>
+              <MenuItem onClick={toSignUp}>Cadastrar</MenuItem>
+            </>) }
           <MenuItem onClick={toAboutUs}>Sobre nós</MenuItem>
         </Menu>
         <Typography variant='h6'>
             HomeWorkout
         </Typography>
-        <IconButton color='inherit' onClick={toLogin} >
+        <IconButton data-testid='login-button' color='inherit' onClick={toLogin} >
           <AccountCircle />
         </IconButton>
       </Toolbar>

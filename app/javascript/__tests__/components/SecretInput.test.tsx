@@ -3,9 +3,9 @@ import { render, fireEvent } from '@testing-library/react'
 
 import SecretInput from '../../components/SecretInput'
 
-test('renders LessonForm', () => {
+test('renders SecretInput', () => {
   const { getAllByText, getByTestId } = render(<SecretInput />)
-  
+
   getAllByText('Senha')
   const iconButton = getByTestId('icon')
 
