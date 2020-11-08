@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import { Typography, Card } from '@material-ui/core'
-import PublishIcon from '@material-ui/icons/Publish'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
 import { useAlert } from '../contexts/alert'
-import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
-import { uploadFile } from 'react-s3'
 import LargeButton from '../components/LargeButton'
-import config from '../utils/awsConfig'
+import UploadButton from '../components/UploadButton'
 
 type Teacher = {
   name: string
@@ -25,7 +21,7 @@ export default function LessonForm() {
 
   const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
   const [name, setName] = useState(teacher.name)
-  const [image, setImage] = useState(teacher.image)
+  const [image] = useState(teacher.image)
   const [email] = useState(teacher.email)
 
   useEffect(() => {
@@ -47,13 +43,6 @@ export default function LessonForm() {
       alert('Erro ao tentar atualizar informações!')
     }
   }
-
-  const handleChange = event => {
-    uploadFile(event.target.files[0], config)
-      .then(({ location }) => setImage(location))
-      .catch(err => console.error(err))
-  }
-
   const classes = useStyles()
 
   return (
@@ -68,26 +57,7 @@ export default function LessonForm() {
           placeholder= 'Seu nome'
           value={name}
         />
-        <input type='file'
-          id='fileUploadButton'
-          style={{ display: 'none' }}
-          onChange={handleChange}
-        />
-        <label htmlFor={'fileUploadButton'}>
-          <Button
-            className={classes.button}
-            color='primary'
-            component='span'
-            startIcon={
-              <SvgIcon fontSize='small'>
-                <PublishIcon />
-              </SvgIcon>
-            }
-          >
-            Escolha sua foto de perfil
-          </Button>
-        </label>
-        <img src={image}/>
+        <UploadButton/>
         <LargeButton
           color='primary'
           onClick={handleCreateClass}

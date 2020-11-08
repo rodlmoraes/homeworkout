@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import { Typography, Card } from '@material-ui/core'
-import PublishIcon from '@material-ui/icons/Publish'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
 import { useAlert } from '../contexts/alert'
-import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
-import { uploadFile } from 'react-s3'
 import LargeButton from '../components/LargeButton'
-import config from '../utils/awsConfig'
+import UploadButton from '../components/UploadButton'
 
 export default function LessonForm() {
   const history = useHistory()
@@ -20,7 +16,7 @@ export default function LessonForm() {
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [description, setDescription] = useState('')
-  const [image, setImage] = useState('')
+  const [image] = useState('')
 
   const handleCreateClass = async () => {
     try {
@@ -37,12 +33,6 @@ export default function LessonForm() {
     } catch {
       alert('Erro ao tentar cadastrar aula!')
     }
-  }
-
-  const handleChange = event => {
-    uploadFile(event.target.files[0], config)
-      .then(({ location }) => setImage(location))
-      .catch(err => console.error(err))
   }
 
   const classes = useStyles()
@@ -74,27 +64,7 @@ export default function LessonForm() {
           placeholder='Descrição'
           value={description}
         />
-        <input type='file'
-          id='fileUploadButton'
-          style={{ display: 'none' }}
-          onChange={handleChange}
-        />
-        <label htmlFor={'fileUploadButton'}>
-          <Button
-            className={classes.button}
-            color='primary'
-            variant='contained'
-            component='span'
-            startIcon={
-              <SvgIcon fontSize='small'>
-                <PublishIcon />
-              </SvgIcon>
-            }
-          >
-            Escolha sua Imagem
-          </Button>
-        </label>
-        <img src={image}/>
+        <UploadButton/>
         <LargeButton
           color='primary'
           onClick={handleCreateClass}
