@@ -84,15 +84,15 @@ export default function Header() {
         >
           <MenuItem onClick={toLessonList}>Lista de aulas</MenuItem>
           { signedIn
-            ? (<>
-              <MenuItem onClick={toCreateLesson}>Cadastrar aula</MenuItem>
-              <MenuItem onClick={toTeacherInfo}>Suas informações</MenuItem>
-              <MenuItem onClick={signOut}>Sair</MenuItem>
-            </>)
-            : (<>
-              <MenuItem onClick={toLogin}>Entrar</MenuItem>
-              <MenuItem onClick={toSignUp}>Cadastrar</MenuItem>
-            </>) }
+            ? ([
+              <MenuItem key='1' onClick={toCreateLesson}>Cadastrar aula</MenuItem>,
+              <MenuItem key='2' onClick={toTeacherInfo}>Suas informações</MenuItem>,
+              <MenuItem key='3' onClick={signOut}>Sair</MenuItem>,
+            ])
+            : ([
+              <MenuItem key='1' onClick={toLogin}>Entrar</MenuItem>,
+              <MenuItem key='2' onClick={toSignUp}>Cadastrar</MenuItem>,
+            ]) }
           <MenuItem onClick={toAboutUs}>Sobre nós</MenuItem>
         </Menu>
         <Typography variant='h6'>

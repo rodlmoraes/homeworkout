@@ -14,6 +14,6 @@ test('renders LessonForm', () => {
   getAllByText('Nome da aula')
   getAllByText('Link da Aula')
   getAllByText('Descrição da Aula')
-  getByText('Escolha sua Imagem')
+  getByText('Escolha a foto da sua aula')
   getByText('Salvar Cadastro')
 })
