@@ -22,9 +22,6 @@ export default function LessonForm() {
   const { showAlert } = useAlert()
 
   const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
-  const [name, setName] = useState(teacher.name)
-  const [image, setImage] = useState(teacher.image)
-  const [email] = useState(teacher.email)
 
   useEffect(() => {
     getCurrentTeacher().then(setTeacher)
@@ -33,11 +30,7 @@ export default function LessonForm() {
   const handleCreateClass = async () => {
     try {
       await api.put('/current_teacher/0', {
-        teacher: {
-          name,
-          image,
-          email,
-        },
+        teacher,
       })
       showAlert('Informações atualizadas!')
       history.push('/')
@@ -48,7 +41,7 @@ export default function LessonForm() {
 
   const handleChange = event => {
     uploadFile(event.target.files[0], config)
-      .then(({ location }) => setImage(location))
+      .then(({ location }) => setTeacher({ ...teacher, image: location }))
       .catch(err => console.error(err))
   }
 
@@ -62,9 +55,9 @@ export default function LessonForm() {
         <TextInput
           name='Nome'
           label='Nome'
-          onChange= {e => { setName(e.target.value) }}
+          onChange= {e => { setTeacher({ ...teacher, name: e.target.value }) }}
           placeholder= 'Seu nome'
-          value={name}
+          value={teacher.name}
         />
         <input type='file'
           id='fileUploadButton'
@@ -86,7 +79,7 @@ export default function LessonForm() {
             Escolha sua foto de perfil
           </Button>
         </label>
-        <img src={image}/>
+        <img src={teacher.image}/>
         <Button
           className={classes.button}
           color='primary'

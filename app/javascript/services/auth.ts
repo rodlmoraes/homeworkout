@@ -15,13 +15,13 @@ export const signUp = async (email: string, password: string, showAlert: (alertT
       client,
     }
 
-    localStorage.setItem('@homeworkout/teacher', JSON.stringify(data))
+    localStorage.setItem('@homeworkout/teacher', JSON.stringify(data.data))
     localStorage.setItem('@homeworkout/access-token', accessToken)
     localStorage.setItem('@homeworkout/uid', uid)
     localStorage.setItem('@homeworkout/client', client)
 
     showAlert('Você se cadastrou!')
-    return data
+    return data.data
   } catch {
     alert('Erro ao tentar se cadastrar!')
     return null
@@ -41,13 +41,13 @@ export const signIn = async (email: string, password: string, showAlert: (alertT
       client,
     }
 
-    localStorage.setItem('@homeworkout/teacher', JSON.stringify(data))
+    localStorage.setItem('@homeworkout/teacher', JSON.stringify(data.data))
     localStorage.setItem('@homeworkout/access-token', accessToken)
     localStorage.setItem('@homeworkout/uid', uid)
     localStorage.setItem('@homeworkout/client', client)
 
     showAlert('Você entrou!')
-    return data
+    return data.data
   } catch {
     alert('Erro ao tentar entrar!')
     return null
