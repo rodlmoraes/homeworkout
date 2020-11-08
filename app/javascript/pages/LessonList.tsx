@@ -26,7 +26,7 @@ export default function LessonList() {
   return (
     <>
       <Header/>
-      <div className={classes.root}>
+      <div className={classes.lessonList}>
         <Typography variant='h3' color='textPrimary'>Aulas disponíveis</Typography>
         <TextInput
           name='Busca'
@@ -57,7 +57,7 @@ const listLessons = async (query: string) => {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    lessonList: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',

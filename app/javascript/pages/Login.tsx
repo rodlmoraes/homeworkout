@@ -1,9 +1,11 @@
-import { Button, Card, createStyles, makeStyles, Typography } from '@material-ui/core'
+import { Card, createStyles, makeStyles, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 
 import TextInput from '../components/TextInput'
 import { useAuth } from '../contexts/auth'
 import Header from '../components/Header'
+import SecretInput from '../components/SecretInput'
+import LargeButton from '../components/LargeButton'
 
 export default function Login() {
   const { signIn } = useAuth()
@@ -16,7 +18,7 @@ export default function Login() {
   return (
     <>
       <Header/>
-      <Card className={classes.root}>
+      <Card className={classes.cardLogin}>
         <Typography variant='h3'>Entre e adicione novas aulas!</Typography>
         <TextInput
           name='Email'
@@ -25,23 +27,16 @@ export default function Login() {
           placeholder='Digite aqui seu email'
           value={email}
         />
-        <TextInput
-          name='Senha'
-          label='Senha'
+        <SecretInput
           onChange= {e => { setPassword(e.target.value) }}
-          placeholder='Digite aqui sua senha'
           value={password}
-          hidden
         />
-        <Button
-          className={classes.button}
+        <LargeButton
           color='secondary'
           onClick={() => signIn(email, password)}
-          size='large'
-          variant='contained'
         >
             Entrar
-        </Button>
+        </LargeButton>
       </Card>
     </>
   )
@@ -49,16 +44,13 @@ export default function Login() {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    cardLogin: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',
       alignItems: 'center',
       borderRadius: 15,
       margin: '4rem',
-    },
-    button: {
-      marginTop: '0.8rem',
     },
   }),
 )

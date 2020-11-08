@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import { Typography, Card } from '@material-ui/core'
-import PublishIcon from '@material-ui/icons/Publish'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
 import { useAlert } from '../contexts/alert'
-import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
-import { uploadFile } from 'react-s3'
+import LargeButton from '../components/LargeButton'
+import UploadButton from '../components/UploadButton'
 
 type Teacher = {
   name: string
@@ -39,18 +37,12 @@ export default function LessonForm() {
     }
   }
 
-  const handleChange = event => {
-    uploadFile(event.target.files[0], config)
-      .then(({ location }) => setTeacher({ ...teacher, image: location }))
-      .catch(err => console.error(err))
-  }
-
   const classes = useStyles()
 
   return (
     <>
       <Header/>
-      <Card className={classes.root}>
+      <Card className={classes.cardInfo}>
         <Typography variant='h3'>Suas informações</Typography>
         <TextInput
           name='Nome'
@@ -59,36 +51,17 @@ export default function LessonForm() {
           placeholder= 'Seu nome'
           value={teacher.name}
         />
-        <input type='file'
-          id='fileUploadButton'
-          style={{ display: 'none' }}
-          onChange={handleChange}
+        <UploadButton
+          image={teacher.image}
+          setImage={image => setTeacher({ ...teacher, image })}
+          buttonText='Escolha sua foto de perfil'
         />
-        <label htmlFor={'fileUploadButton'}>
-          <Button
-            className={classes.button}
-            color='primary'
-            variant='contained'
-            component='span'
-            startIcon={
-              <SvgIcon fontSize='small'>
-                <PublishIcon />
-              </SvgIcon>
-            }
-          >
-            Escolha sua foto de perfil
-          </Button>
-        </label>
-        <img src={teacher.image}/>
-        <Button
-          className={classes.button}
+        <LargeButton
           color='primary'
           onClick={handleCreateClass}
-          size='large'
-          variant='contained'
         >
           Salvar Cadastro
-        </Button>
+        </LargeButton>
       </Card>
     </>
   )
@@ -99,17 +72,9 @@ const getCurrentTeacher = async () => {
   return data
 }
 
-const config = {
-  bucketName: 'homeworkout-workteam',
-  dirName: 'lesson_photos',
-  region: 'us-east-1',
-  accessKeyId: 'AKIAJDKHXBF6CEXNQPIQ',
-  secretAccessKey: '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',
-}
-
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    cardInfo: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',
