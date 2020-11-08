@@ -57,7 +57,7 @@ export default function LessonForm() {
           placeholder= 'Seu nome'
           value={name}
         />
-        <UploadButton 
+        <UploadButton
           image={image}
           setImage={setImage}
           buttonText='Escolha sua foto de perfil'

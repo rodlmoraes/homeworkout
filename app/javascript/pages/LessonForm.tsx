@@ -64,7 +64,7 @@ export default function LessonForm() {
           placeholder='Descrição'
           value={description}
         />
-        <UploadButton 
+        <UploadButton
           image={image}
           setImage={setImage}
           buttonText='Escolha a foto da sua aula'

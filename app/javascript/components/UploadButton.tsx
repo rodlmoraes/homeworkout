@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { uploadFile } from 'react-s3'
@@ -12,8 +12,7 @@ type UploadButtonProps = {
   buttonText: string
 }
 
-
-export default function UploadButton({image, setImage, buttonText} : UploadButtonProps) {
+export default function UploadButton({ image, setImage, buttonText } : UploadButtonProps) {
   const classes = useStyles()
 
   const handleChange = event => {
