@@ -23,7 +23,7 @@ export default function LessonCard({ name, description, link, image }: LessonCar
   const classes = useStyles()
   const [modalIsOpen, setModalIsOpen] = useState(false)
   return (
-    <Card className={classes.root}>
+    <Card className={classes.card}>
       <CardHeader
         title={name}
       />
@@ -65,7 +65,7 @@ export default function LessonCard({ name, description, link, image }: LessonCar
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    card: {
       maxWidth: '22rem',
       height: '25rem',
       borderRadius: 15,

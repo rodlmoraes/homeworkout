@@ -1,9 +1,8 @@
 import React from 'react'
-import Button, {ButtonProps } from '@material-ui/core/Button'
+import Button, { ButtonProps } from '@material-ui/core/Button'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 export default function LargeButton(props: ButtonProps) {
-
   const classes = useStyles()
 
   return <Button
