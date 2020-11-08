@@ -21,7 +21,7 @@ export default function LessonForm() {
 
   const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
   const [name, setName] = useState(teacher.name)
-  const [image] = useState(teacher.image)
+  const [image, setImage] = useState(teacher.image)
   const [email] = useState(teacher.email)
 
   useEffect(() => {
@@ -57,7 +57,11 @@ export default function LessonForm() {
           placeholder= 'Seu nome'
           value={name}
         />
-        <UploadButton/>
+        <UploadButton 
+          image={image}
+          setImage={setImage}
+          buttonText='Escolha sua foto de perfil'
+        />
         <LargeButton
           color='primary'
           onClick={handleCreateClass}

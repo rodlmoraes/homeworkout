@@ -16,7 +16,7 @@ export default function LessonForm() {
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [description, setDescription] = useState('')
-  const [image] = useState('')
+  const [image, setImage] = useState('')
 
   const handleCreateClass = async () => {
     try {
@@ -64,7 +64,11 @@ export default function LessonForm() {
           placeholder='Descrição'
           value={description}
         />
-        <UploadButton/>
+        <UploadButton 
+          image={image}
+          setImage={setImage}
+          buttonText='Escolha a foto da sua aula'
+        />
         <LargeButton
           color='primary'
           onClick={handleCreateClass}

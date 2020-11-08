@@ -6,9 +6,15 @@ import config from '../utils/awsConfig'
 import { SvgIcon } from '@material-ui/core'
 import PublishIcon from '@material-ui/icons/Publish'
 
-export default function LargeButton() {
+type UploadButtonProps = {
+  image: string
+  setImage: (image: string) => void
+  buttonText: string
+}
+
+
+export default function UploadButton({image, setImage, buttonText} : UploadButtonProps) {
   const classes = useStyles()
-  const [image, setImage] = useState('')
 
   const handleChange = event => {
     uploadFile(event.target.files[0], config)
@@ -35,7 +41,7 @@ export default function LargeButton() {
             </SvgIcon>
           }
         >
-          Escolha sua Imagem
+          {buttonText}
         </Button>
       </label>
       <img src={image} />
