@@ -29,7 +29,7 @@ RSpec.describe Api::LessonsController, type: :controller, api: true do
   end
 
   describe 'Post create' do
-    let(:params) { { lesson: { name: 'joana', description: 'jasdhkerubfelj', link: 'http.com.br' } } }
+    let(:params) { { lesson: { name: 'joana', description: 'jasdhkerubfelj', link: 'http.com.br', image: 'image' } } }
 
     before do
       request.headers.merge!(teacher.create_new_auth_token)

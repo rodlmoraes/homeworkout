@@ -15,7 +15,7 @@ module Api
     private
 
     def update_params
-      params[:teacher].permit(:name, :email).merge(teacher: current_teacher)
+      params[:teacher].permit(:name, :email, :image).merge(teacher: current_teacher)
     end
   end
 end
