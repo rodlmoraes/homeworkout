@@ -10,6 +10,7 @@ import api from '../services/api'
 import { useAlert } from '../contexts/alert'
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
 import { uploadFile } from 'react-s3'
+import LargeButton from '../components/LargeButton'
 
 export default function LessonForm() {
   const history = useHistory()
@@ -48,7 +49,7 @@ export default function LessonForm() {
   return (
     <>
       <Header/>
-      <Card className={classes.root}>
+      <Card className={classes.card}>
         <Typography variant='h3'>Cadastro de Aula</Typography>
         <TextInput
           name='Nome da aula'
@@ -93,15 +94,12 @@ export default function LessonForm() {
           </Button>
         </label>
         <img src={image}/>
-        <Button
-          className={classes.button}
+        <LargeButton
           color='primary'
           onClick={handleCreateClass}
-          size='large'
-          variant='contained'
         >
           Salvar Cadastro
-        </Button>
+        </LargeButton>
       </Card>
     </>
   )
@@ -117,7 +115,7 @@ const config = {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    card: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',

@@ -5,6 +5,7 @@ import TextInput from '../components/TextInput'
 import { useAuth } from '../contexts/auth'
 import Header from '../components/Header'
 import SecretInput from '../components/SecretInput'
+import LargeButton from '../components/LargeButton'
 
 export default function Login() {
   const { signIn } = useAuth()
@@ -17,7 +18,7 @@ export default function Login() {
   return (
     <>
       <Header/>
-      <Card className={classes.root}>
+      <Card className={classes.cardLogin}>
         <Typography variant='h3'>Entre e adicione novas aulas!</Typography>
         <TextInput
           name='Email'
@@ -30,15 +31,12 @@ export default function Login() {
           onChange= {e => { setPassword(e.target.value) }}
           value={password}
         />
-        <Button
-          className={classes.button}
+        <LargeButton
           color='secondary'
           onClick={() => signIn(email, password)}
-          size='large'
-          variant='contained'
         >
             Entrar
-        </Button>
+        </LargeButton>
       </Card>
     </>
   )
@@ -46,16 +44,13 @@ export default function Login() {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    cardLogin: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',
       alignItems: 'center',
       borderRadius: 15,
       margin: '4rem',
-    },
-    button: {
-      marginTop: '0.8rem',
     },
   }),
 )

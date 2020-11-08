@@ -10,6 +10,7 @@ import api from '../services/api'
 import { useAlert } from '../contexts/alert'
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
 import { uploadFile } from 'react-s3'
+import LargeButton from '../components/LargeButton'
 
 type Teacher = {
   name: string
@@ -57,7 +58,7 @@ export default function LessonForm() {
   return (
     <>
       <Header/>
-      <Card className={classes.root}>
+      <Card className={classes.cardInfo}>
         <Typography variant='h3'>Suas informações</Typography>
         <TextInput
           name='Nome'
@@ -75,7 +76,6 @@ export default function LessonForm() {
           <Button
             className={classes.button}
             color='primary'
-            variant='contained'
             component='span'
             startIcon={
               <SvgIcon fontSize='small'>
@@ -87,15 +87,12 @@ export default function LessonForm() {
           </Button>
         </label>
         <img src={image}/>
-        <Button
-          className={classes.button}
+        <LargeButton
           color='primary'
           onClick={handleCreateClass}
-          size='large'
-          variant='contained'
         >
           Salvar Cadastro
-        </Button>
+        </LargeButton>
       </Card>
     </>
   )
@@ -116,7 +113,7 @@ const config = {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    cardInfo: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',
