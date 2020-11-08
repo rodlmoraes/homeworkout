@@ -11,6 +11,7 @@ import { useAlert } from '../contexts/alert'
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
 import { uploadFile } from 'react-s3'
 import LargeButton from '../components/LargeButton'
+import config from '../utils/awsConfig'
 
 type Teacher = {
   name: string
@@ -101,14 +102,6 @@ export default function LessonForm() {
 const getCurrentTeacher = async () => {
   const { data } = await api.get('/current_teacher/0')
   return data
-}
-
-const config = {
-  bucketName: 'homeworkout-workteam',
-  dirName: 'lesson_photos',
-  region: 'us-east-1',
-  accessKeyId: 'AKIAJDKHXBF6CEXNQPIQ',
-  secretAccessKey: '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',
 }
 
 const useStyles = makeStyles(() =>
