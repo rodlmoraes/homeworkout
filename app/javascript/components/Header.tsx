@@ -101,8 +101,8 @@ export default function Header() {
             ]) }
           <MenuItem onClick={toAboutUs}>Sobre nós</MenuItem>
         </Menu>
-        <Typography variant='h6'>
-            HomeWorkout
+        <Typography variant='h6' style={{cursor: 'pointer'}} onClick={toLessonList}>
+          HomeWorkout
         </Typography>
         <div className={classes.leftItem}>
           <Typography variant='subtitle1'>
