@@ -53,7 +53,7 @@ export default function LessonForm() {
         />
         <UploadButton
           image={teacher.image}
-          setImage={(image) => setTeacher({ ...teacher, image })}
+          setImage={image => setTeacher({ ...teacher, image })}
           buttonText='Escolha sua foto de perfil'
         />
         <LargeButton
