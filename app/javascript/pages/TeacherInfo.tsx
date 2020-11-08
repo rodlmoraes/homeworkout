@@ -20,9 +20,6 @@ export default function LessonForm() {
   const { showAlert } = useAlert()
 
   const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
-  const [name, setName] = useState(teacher.name)
-  const [image, setImage] = useState(teacher.image)
-  const [email] = useState(teacher.email)
 
   useEffect(() => {
     getCurrentTeacher().then(setTeacher)
@@ -31,11 +28,7 @@ export default function LessonForm() {
   const handleCreateClass = async () => {
     try {
       await api.put('/current_teacher/0', {
-        teacher: {
-          name,
-          image,
-          email,
-        },
+        teacher,
       })
       showAlert('Informações atualizadas!')
       history.push('/')
@@ -43,6 +36,7 @@ export default function LessonForm() {
       alert('Erro ao tentar atualizar informações!')
     }
   }
+
   const classes = useStyles()
 
   return (
@@ -53,9 +47,9 @@ export default function LessonForm() {
         <TextInput
           name='Nome'
           label='Nome'
-          onChange= {e => { setName(e.target.value) }}
+          onChange= {e => { setTeacher({ ...teacher, name: e.target.value }) }}
           placeholder= 'Seu nome'
-          value={name}
+          value={teacher.name}
         />
         <UploadButton
           image={image}
