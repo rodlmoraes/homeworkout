@@ -26,7 +26,7 @@ module Api
     end
 
     def create_params
-      params[:lesson].permit(:name, :description, :link).merge(teacher: current_teacher)
+      params[:lesson].permit(:name, :description, :link, :image).merge(teacher: current_teacher)
     end
     def show_params
       params.permit(:id)

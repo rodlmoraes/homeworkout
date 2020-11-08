@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -11,29 +11,38 @@ import { useAlert } from '../contexts/alert'
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
 import { uploadFile } from 'react-s3'
 
+type Teacher = {
+  name: string
+  image: string
+  email: string
+}
+
 export default function LessonForm() {
   const history = useHistory()
   const { showAlert } = useAlert()
 
-  const [name, setName] = useState('')
-  const [link, setLink] = useState('')
-  const [description, setDescription] = useState('')
-  const [image, setImage] = useState('')
+  const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
+  const [name, setName] = useState(teacher.name)
+  const [image, setImage] = useState(teacher.image)
+  const [email] = useState(teacher.email)
+
+  useEffect(() => {
+    getCurrentTeacher().then(setTeacher)
+  }, [])
 
   const handleCreateClass = async () => {
     try {
-      await api.post('/lessons', {
-        lesson: {
+      await api.put('/current_teacher/0', {
+        teacher: {
           name,
-          link,
-          description,
           image,
+          email,
         },
       })
-      showAlert('Aula cadastrada!')
+      showAlert('Informações atualizadas!')
       history.push('/')
     } catch {
-      alert('Erro ao tentar cadastrar aula!')
+      alert('Erro ao tentar atualizar informações!')
     }
   }
 
@@ -49,28 +58,13 @@ export default function LessonForm() {
     <>
       <Header/>
       <Card className={classes.root}>
-        <Typography variant='h3'>Cadastro de Aula</Typography>
+        <Typography variant='h3'>Suas informações</Typography>
         <TextInput
-          name='Nome da aula'
-          label='Nome da aula'
+          name='Nome'
+          label='Nome'
           onChange= {e => { setName(e.target.value) }}
-          placeholder='Aula de'
+          placeholder= 'Seu nome'
           value={name}
-        />
-        <TextInput
-          name='Link da Aula'
-          label='Link da Aula'
-          onChange= {e => { setLink(e.target.value) }}
-          placeholder='Link do Youtube'
-          value={link}
-        />
-        <TextInput
-          name='Descrição da Aula'
-          label='Descrição da Aula'
-          multiline
-          onChange= {e => { setDescription(e.target.value) }}
-          placeholder='Descrição'
-          value={description}
         />
         <input type='file'
           id='fileUploadButton'
@@ -89,7 +83,7 @@ export default function LessonForm() {
               </SvgIcon>
             }
           >
-            Escolha sua Imagem
+            Escolha sua foto de perfil
           </Button>
         </label>
         <img src={image}/>
@@ -105,6 +99,11 @@ export default function LessonForm() {
       </Card>
     </>
   )
+}
+
+const getCurrentTeacher = async () => {
+  const { data } = await api.get('/current_teacher/0')
+  return data
 }
 
 const config = {

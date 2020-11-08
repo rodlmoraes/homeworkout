@@ -6,6 +6,7 @@ module Teachers
       @teacher = params.fetch(:teacher)
       @name = params.fetch(:name)
       @email = params.fetch(:email)
+      @image = params.fetch(:image)
     end
 
     def call
@@ -21,7 +22,8 @@ module Teachers
     def teacher_params
       {
         name: @name,
-        email: @email
+        email: @email,
+        image: @image
       }.compact
     end
   end
