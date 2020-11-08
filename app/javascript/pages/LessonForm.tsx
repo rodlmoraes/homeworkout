@@ -10,6 +10,7 @@ import api from '../services/api'
 import { useAlert } from '../contexts/alert'
 import SvgIcon from '@material-ui/core/SvgIcon/SvgIcon'
 import { uploadFile } from 'react-s3'
+import config from '../utils/awsConfig'
 
 export default function LessonForm() {
   const history = useHistory()
@@ -105,14 +106,6 @@ export default function LessonForm() {
       </Card>
     </>
   )
-}
-
-const config = {
-  bucketName: 'homeworkout-workteam',
-  dirName: 'lesson_photos',
-  region: 'us-east-1',
-  accessKeyId: 'AKIAJDKHXBF6CEXNQPIQ',
-  secretAccessKey: '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',
 }
 
 const useStyles = makeStyles(() =>
