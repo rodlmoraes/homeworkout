@@ -15,6 +15,7 @@ export type Teacher = {
   id: number,
   email: string,
   name: string,
+  image: string,
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)

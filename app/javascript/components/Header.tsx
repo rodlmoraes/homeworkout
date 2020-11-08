@@ -17,6 +17,11 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       justifyContent: 'space-between',
     },
+    leftItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
   }),
 )
 
@@ -25,7 +30,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const history = useHistory()
-  const { signOut } = useAuth()
+  const { signOut, teacher } = useAuth()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -92,9 +97,14 @@ export default function Header() {
         <Typography variant='h6'>
             HomeWorkout
         </Typography>
-        <IconButton color='inherit' onClick={toLogin} >
-          <AccountCircle />
-        </IconButton>
+        <div className={classes.leftItem}>
+          <Typography variant='subtitle1'>
+            {teacher?.name}
+          </Typography>
+          <IconButton color='inherit' onClick={toLogin} >
+            <AccountCircle />
+          </IconButton>
+        </div>
       </Toolbar>
     </AppBar>
   )
