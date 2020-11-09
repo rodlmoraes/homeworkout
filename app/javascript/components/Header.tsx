@@ -17,6 +17,11 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       justifyContent: 'space-between',
     },
+    leftItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
   }),
 )
 
@@ -25,7 +30,8 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const history = useHistory()
-  const { signOut } = useAuth()
+
+  const { signedIn, signOut, teacher } = useAuth()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -51,6 +57,10 @@ export default function Header() {
     history.push('/')
   }
 
+  const toTeacherInfo = () => {
+    history.push('/informacoes-do-professor')
+  }
+
   const toAboutUs = () => {
     history.push('/sobre-nos')
   }
@@ -59,6 +69,7 @@ export default function Header() {
     <AppBar position='static'>
       <Toolbar className={classes.toolbar}>
         <IconButton
+          data-testid='menu-button'
           onClick={handleClick}
         >
           <MenuIcon />
@@ -72,24 +83,35 @@ export default function Header() {
           }}
           PaperProps={{
             style: {
-              width: '10rem',
+              width: '12rem',
             },
           }}
           getContentAnchorEl={null}
         >
-          <MenuItem onClick={toLogin}>Entrar</MenuItem>
-          <MenuItem onClick={toSignUp}>Cadastrar</MenuItem>
-          <MenuItem onClick={signOut}>Sair</MenuItem>
-          <MenuItem onClick={toCreateLesson}>Cadastrar aula</MenuItem>
           <MenuItem onClick={toLessonList}>Lista de aulas</MenuItem>
+          { signedIn
+            ? ([
+              <MenuItem key='1' onClick={toCreateLesson}>Cadastrar aula</MenuItem>,
+              <MenuItem key='2' onClick={toTeacherInfo}>Suas informações</MenuItem>,
+              <MenuItem key='3' onClick={signOut}>Sair</MenuItem>,
+            ])
+            : ([
+              <MenuItem key='1' onClick={toLogin}>Entrar</MenuItem>,
+              <MenuItem key='2' onClick={toSignUp}>Cadastrar</MenuItem>,
+            ]) }
           <MenuItem onClick={toAboutUs}>Sobre nós</MenuItem>
         </Menu>
-        <Typography variant='h6'>
-            HomeWorkout
+        <Typography variant='h6' style={{ cursor: 'pointer' }} onClick={toLessonList}>
+          HomeWorkout
         </Typography>
-        <IconButton color='inherit' onClick={toLogin} >
-          <AccountCircle />
-        </IconButton>
+        <div className={classes.leftItem}>
+          <Typography variant='subtitle1'>
+            {teacher?.name}
+          </Typography>
+          <IconButton data-testid='login-button' color='inherit' onClick={toLogin} >
+            <AccountCircle />
+          </IconButton>
+        </div>
       </Toolbar>
     </AppBar>
   )

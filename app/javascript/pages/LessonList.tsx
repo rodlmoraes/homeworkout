@@ -11,6 +11,7 @@ type Lesson = {
   name: string
   description: string
   link: string
+  image: string
 }
 
 export default function LessonList() {
@@ -25,7 +26,7 @@ export default function LessonList() {
   return (
     <>
       <Header/>
-      <div className={classes.root}>
+      <div className={classes.lessonList}>
         <Typography variant='h3' color='textPrimary'>Aulas disponíveis</Typography>
         <TextInput
           name='Busca'
@@ -35,8 +36,13 @@ export default function LessonList() {
           value={query}
         />
         <Grid container spacing={3}>
-          {lessons.map(({ name, description, link }, key) => (<Grid key={key} item xs={3}>
-            <LessonCard name={name} description={description} link={link}/>
+          {lessons.map(({ name, description, link, image }, key) => (<Grid key={key} item xs={3}>
+            <LessonCard
+              name={name}
+              description={description}
+              link={link}
+              image={image}
+            />
           </Grid>))}
         </Grid>
       </div>
@@ -51,7 +57,7 @@ const listLessons = async (query: string) => {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    lessonList: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',

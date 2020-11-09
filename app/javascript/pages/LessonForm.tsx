@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import { Typography, Card } from '@material-ui/core'
-
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import api from '../services/api'
 import { useAlert } from '../contexts/alert'
+import LargeButton from '../components/LargeButton'
+import UploadButton from '../components/UploadButton'
 
 export default function LessonForm() {
   const history = useHistory()
@@ -16,6 +16,7 @@ export default function LessonForm() {
   const [name, setName] = useState('')
   const [link, setLink] = useState('')
   const [description, setDescription] = useState('')
+  const [image, setImage] = useState('')
 
   const handleCreateClass = async () => {
     try {
@@ -24,6 +25,7 @@ export default function LessonForm() {
           name,
           link,
           description,
+          image,
         },
       })
       showAlert('Aula cadastrada!')
@@ -38,7 +40,7 @@ export default function LessonForm() {
   return (
     <>
       <Header/>
-      <Card className={classes.root}>
+      <Card className={classes.card}>
         <Typography variant='h3'>Cadastro de Aula</Typography>
         <TextInput
           name='Nome da aula'
@@ -62,15 +64,17 @@ export default function LessonForm() {
           placeholder='Descrição'
           value={description}
         />
-        <Button
-          className={classes.button}
-          color='secondary'
+        <UploadButton
+          image={image}
+          setImage={setImage}
+          buttonText='Escolha a foto da sua aula'
+        />
+        <LargeButton
+          color='primary'
           onClick={handleCreateClass}
-          size='large'
-          variant='contained'
         >
           Salvar Cadastro
-        </Button>
+        </LargeButton>
       </Card>
     </>
   )
@@ -78,7 +82,7 @@ export default function LessonForm() {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    card: {
       display: 'flex',
       flexDirection: 'column',
       padding: '2rem',

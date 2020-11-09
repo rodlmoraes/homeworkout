@@ -8,7 +8,8 @@ jest.mock('../../services/api', () => ({
 }))
 
 test('renders LessonList', async () => {
-  const { getByText } = render(<LessonList />)
+  const { getByText, getAllByText } = render(<LessonList />)
   await waitFor(() => getByText('Aulas disponíveis'))
   await waitFor(() => getByText('HomeWorkout'))
+  getAllByText('Busca')
 })
