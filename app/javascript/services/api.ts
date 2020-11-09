@@ -7,7 +7,7 @@ const baseURLs = {
 }
 
 const api = axios.create({
-  baseURL: baseURLs[process.env.NODE_ENV] || 'http://127.0.0.1:64793/api',
+  baseURL: baseURLs[process.env.RAILS_ENV] || 'http://127.0.0.1:64793/api',
 })
 
 export default api

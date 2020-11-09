@@ -35,16 +35,16 @@ export default function LessonPage({ match }:Props) {
           {lesson ? lesson.name : 'Aula não encontrada'}
         </Typography>
         { lesson &&
-          <iframe width='560' height='315' src={lesson.link} frameBorder='0' allowFullScreen></iframe> &&
-          <Typography variant='body1' color='textPrimary'>{lesson.description}</Typography>
+          <iframe width='560' height='315' src={lesson.link} frameBorder='0' allowFullScreen></iframe>
         }
+        <Typography variant='body1' color='textPrimary'>{lesson?.description}</Typography>
       </div>
     </div>
   )
 }
 
 const listLessons = async match => {
-  const { data } = await api.get(`/lessons?query=${match.params.id}`)
+  const { data } = await api.get(`/lessons/${match.params.id}`)
   return data[0]
 }
 
