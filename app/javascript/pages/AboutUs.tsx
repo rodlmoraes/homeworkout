@@ -47,9 +47,9 @@ const useStyles = makeStyles(theme => ({
 const cards = [{ title: 'Carolina', description: 'Desenvolvedora Topster', image: 'https://bit.ly/36gZ1DF' },
   { title: 'Rodrigo', description: 'Desenvolvedor Topster', image: 'https://bit.ly/3lgLUZy' },
   { title: 'Rogério', description: 'Desenvolvedor Topster', image: 'https://bit.ly/3lgLVwA' },
-  { title: 'Vinícius', description: 'Desenvolvedor Topster', image: '' },
+  { title: 'Vinícius', description: 'Desenvolvedor Topster', image: '..' },
   { title: 'Julia', description: 'Desenvolvedora Topster', image: 'https://bit.ly/3pbQ47i' },
-  { title: 'João', description: 'Desenvolvedor Topster', image: '' }]
+  { title: 'João', description: 'Desenvolvedor Topster', image: '..' }]
 
 export default function AboutUs() {
   const classes = useStyles()
@@ -73,7 +73,7 @@ export default function AboutUs() {
               Sobre Nós
             </Typography>
             <Typography variant='h5' align='center' color='textSecondary' paragraph>
-              A Homeworkout surgiu em meados de 2020 durante o período de
+              A Empresa Homeworkout surgiu em meados de 2020 durante o período de
               isolamento devido a pandemia do COVID-19
               com o intuito de fornecer aulas de exercícios físicos a pessoas impossibilitadas
               de sairem de suas casas.
@@ -88,7 +88,7 @@ export default function AboutUs() {
           {/* End hero unit */}
           <Grid container spacing={ 4 }>
             { cards.map(({ title, image, description }, key) => (
-              <Grid key={ key } xs={ 12 } sm={ 6 } md={ 4 }>
+              <Grid key={ key }>
                 <Card className={ classes.card }>
                   <CardMedia
                     className={ classes.cardMedia }
