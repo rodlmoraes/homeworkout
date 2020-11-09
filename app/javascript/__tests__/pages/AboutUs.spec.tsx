@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import AboutUs from '../../pages/AboutUs'
 
 test('renders AboutUs', () => {
-  const { getByText} = render(<AboutUs />)
+  const { getByText } = render(<AboutUs />)
   getByText('Empresa')
   getByText('Rogério')
   getByText('Rodrigo')
@@ -13,4 +13,3 @@ test('renders AboutUs', () => {
   getByText('João')
   getByText('Vinícius')
 })
-
