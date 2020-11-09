@@ -18,7 +18,7 @@ Então('o cadastro da aula deve ser efetuado') do
   expect(current_path).to eq('/')
 end
 
-Dado('que existem aulas disponíves') do
+Dado('que existem aulas disponíveis') do
   visit 'cadastrar'
   fill_in 'Email',	with: 'test@test.com'
   fill_in 'Senha',	with: '123456'
@@ -37,4 +37,13 @@ end
 
 Então('todas as aulas cadastradas devem aparecer') do
   expect(page).to have_content('Yoga')
+end
+
+Quando('o usuário clicar no botão da aula') do
+  click_button 'Detalhes'
+end
+
+Então('deverá aparecer o nome da aula e o link dela') do
+  expect(page).to have_content('Yoga')
+  expect(page).to have_content('https://www.youtube.com/link-aula')
 end
