@@ -15,28 +15,25 @@ type Props = {
   match: {
     params: {
       id: number
-      name: string
-      description: string
-      link: string
     }
   }
 }
 
 export default function LessonPage({ match }:Props) {
-  const [lesson, setLessons] = useState<Lesson>({ name: 'Aula não encontrada', description: '', link: '' })
+  const [lesson, setLessons] = useState<Lesson>({ name: 'Carregando...', description: '', link: '' })
   const classes = useStyles()
 
   useEffect(() => {
     listLessons(match).then(setLessons)
-  }, [match])
+  }, [match.params.id])
 
   return (
     <div>
       <Header/>
       <div className={classes.root}>
-        <Typography variant='h3' color='textPrimary'>{lesson.name}</Typography>
-        <iframe width='560' height='315' src={lesson.link} frameBorder='0' allowFullScreen></iframe>
-        <Typography variant='body1' color='textPrimary'>{lesson.description}</Typography>
+        <Typography variant='h3' color='textPrimary'>{lesson ? lesson.name : 'Aula não encontrada'}</Typography>
+        <iframe width='560' height='315' src={lesson?.link} frameBorder='0' allowFullScreen></iframe>
+        <Typography variant='body1' color='textPrimary'>{lesson?.description}</Typography>
       </div>
     </div>
   )
