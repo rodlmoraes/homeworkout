@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   cardContent: {
     flexGrow: 1,
@@ -66,7 +66,6 @@ export default function AboutUs() {
         </Toolbar>
       </AppBar>
       <main>
-        {/* Hero unit */}
         <div className={classes.heroContent}>
           <Container maxWidth='sm'>
             <Typography component='h1' variant='h2' align='center' color='textPrimary' gutterBottom>
@@ -85,7 +84,6 @@ export default function AboutUs() {
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth='md'>
-          {/* End hero unit */}
           <Grid container spacing={ 4 }>
             { cards.map(({ title, image, description }, key) => (
               <Grid key={ key }>
@@ -110,7 +108,6 @@ export default function AboutUs() {
           </Grid>
         </Container>
       </main>
-      {/* End footer */}
     </React.Fragment>
   )
 }
