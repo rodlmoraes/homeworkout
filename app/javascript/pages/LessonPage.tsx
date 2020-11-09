@@ -31,9 +31,13 @@ export default function LessonPage({ match }:Props) {
     <div>
       <Header/>
       <div className={classes.root}>
-        <Typography variant='h3' color='textPrimary'>{lesson ? lesson.name : 'Aula não encontrada'}</Typography>
-        <iframe width='560' height='315' src={lesson?.link} frameBorder='0' allowFullScreen></iframe>
-        <Typography variant='body1' color='textPrimary'>{lesson?.description}</Typography>
+        <Typography variant='h3' color='textPrimary'>
+          {lesson ? lesson.name : 'Aula não encontrada'}
+        </Typography>
+        { lesson &&
+          <iframe width='560' height='315' src={lesson.link} frameBorder='0' allowFullScreen></iframe> &&
+          <Typography variant='body1' color='textPrimary'>{lesson.description}</Typography>
+        }
       </div>
     </div>
   )
