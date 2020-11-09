@@ -7,13 +7,15 @@ RSpec.describe Lessons::Create, type: :service do
   let(:name) { 'Muay Thai' }
   let(:description) { 'this is a very long description' }
   let(:link) { 'www.google.com' }
+  let(:image) { 'image' }
 
   let(:lesson_params) do
     {
       teacher: teacher,
       name: name,
       description: description,
-      link: link
+      link: link,
+      image: image
     }
   end
 
