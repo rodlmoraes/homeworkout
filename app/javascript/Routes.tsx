@@ -4,6 +4,7 @@ import { BrowserRouter, Redirect, Route, RouteProps, Switch } from 'react-router
 import { useAuth } from './contexts/auth'
 import LessonList from './pages/LessonList'
 import LessonForm from './pages/LessonForm'
+import LessonPage from './pages/LessonPage'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import TeacherInfo from './pages/TeacherInfo'
@@ -23,6 +24,7 @@ export default function Routes({ route }: RoutesProps) {
       <Switch>
         <Route path='/' component={LessonList} exact />
         <Route path='/sobre-nos' component={AboutUs} exact />
+        <Route path='/aula/:id' component={LessonPage} exact />
         <PrivateRoute
           path='/cadastrar-aula'
           component={LessonForm}
