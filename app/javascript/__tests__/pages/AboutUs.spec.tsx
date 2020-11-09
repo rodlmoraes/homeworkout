@@ -9,7 +9,7 @@ test('renders AboutUs', () => {
   getByText('Rogério')
   getByText('Rodrigo')
   getByText('Carolina')
-  getByText('Júlia')
+  getByText('Julia')
   getByText('João')
   getByText('Vinícius')
 })

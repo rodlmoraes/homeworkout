@@ -6,4 +6,4 @@ Para saber quais são os participantes do projeto
 Cenário: Exibição de informações dos desenvolvedores e da empresa
 Dado que um usuário do sistema queira ver informações dos desenvolvedores e da empresa
 Quando ele entrar na página "sobre nós"
-Então as informações dos desenvolvedores e da empresa devem ser exibidas
+Então as informações dos desenvolvedores e da empresa devem ser mostradas
