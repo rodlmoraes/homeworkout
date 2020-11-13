@@ -18,4 +18,4 @@ Então todas as aulas cadastradas devem aparecer
 Cenário: Ver o vídeo de uma aula específica
 Dado que existem aulas disponíveis
 Quando o usuário clicar no botão da aula
-Então deverá aparecer o nome da aula e o link dela
+Então deverá aparecer o nome da aula
