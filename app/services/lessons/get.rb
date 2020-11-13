@@ -15,7 +15,7 @@ module Lessons
     def get
       Lesson
         .includes(:teacher)
-        .where(id: @id)
+        .find(@id)
     end
   end
 end

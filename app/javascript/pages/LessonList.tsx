@@ -7,7 +7,8 @@ import TextInput from '../components/TextInput'
 import LessonCard from '../components/LessonCard'
 import api from '../services/api'
 
-type Lesson = {
+export type Lesson = {
+  id: string
   name: string
   description: string
   link: string
@@ -36,8 +37,9 @@ export default function LessonList() {
           value={query}
         />
         <Grid container spacing={3}>
-          {lessons.map(({ name, description, link, image }, key) => (<Grid key={key} item xs={3}>
+          {lessons.map(({ id, name, description, link, image }, key) => (<Grid key={key} item xs={3}>
             <LessonCard
+              id={id}
               name={name}
               description={description}
               link={link}

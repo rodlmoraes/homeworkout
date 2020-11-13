@@ -28,6 +28,21 @@ RSpec.describe Api::LessonsController, type: :controller, api: true do
     end
   end
 
+  describe 'GET show' do
+    let!(:lesson) { create(:lesson, teacher: teacher).attributes.except('created_at', 'updated_at') }
+    let(:params) { { id: lesson['id'] } }
+
+    before { get :show, params: params }
+
+    it 'returns the lesson' do
+      expect(body.except('teacher')).to eq(lesson.except('teacher_id'))
+    end
+
+    it "returns the correct lesson's teacher" do
+      expect(body['teacher']['id']).to eq(lesson['teacher_id'])
+    end
+  end
+
   describe 'Post create' do
     let(:params) { { lesson: { name: 'joana', description: 'jasdhkerubfelj', link: 'http.com.br', image: 'image' } } }
 

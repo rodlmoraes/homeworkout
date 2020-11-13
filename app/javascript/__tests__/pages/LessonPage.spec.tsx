@@ -4,7 +4,7 @@ import { render, waitFor } from '@testing-library/react'
 import LessonPage from '../../pages/LessonPage'
 
 jest.mock('../../services/api', () => ({
-  get: () => Promise.resolve({ data: [] }),
+  get: () => Promise.resolve({ data: null }),
 }))
 
 test('renders LessonPage (hit, Timeout of 1s)', async () => {

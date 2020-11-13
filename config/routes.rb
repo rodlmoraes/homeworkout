@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     resources :lessons, only: [:index, :create, :show]
-    resources :current_teacher, only: [:show, :update]
+    resources :current_teacher, only: [:show, :update] do
+      get 'lessons', on: :collection, to: 'current_teacher#lessons'
+    end
   end
 
   get '/:route', to: 'pages#fallback'
-  get '/aula/:id', to: 'pages#fallback'
+  get '*path', to: 'pages#fallback'
 end
