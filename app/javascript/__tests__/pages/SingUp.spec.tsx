@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 
-import Login from '../../pages/SignUp'
+import SignUp from '../../pages/SignUp'
 
-test('renders LessonForm', () => {
-  const { getByText, getAllByText } = render(<Login/>)
+test('renders SignUp', () => {
+  const { getByText, getAllByText } = render(<SignUp/>)
   getByText('HomeWorkout')
   getByText('Cadastre-se e adicione novas aulas!')
   getAllByText('Email')

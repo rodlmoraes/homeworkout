@@ -12,10 +12,20 @@ module Api
       render json: { updated: updated }, status: :ok
     end
 
+    def lessons
+      lessons = Teachers::Lessons.call(lessons_params)
+
+      render json: lessons
+    end
+
     private
 
     def update_params
       params[:teacher].permit(:name, :email, :image).merge(teacher: current_teacher)
+    end
+
+    def lessons_params
+      { teacher: current_teacher }
     end
   end
 end

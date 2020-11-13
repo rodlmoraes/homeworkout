@@ -4,12 +4,7 @@ import { Typography } from '@material-ui/core'
 
 import Header from '../components/Header'
 import api from '../services/api'
-
-type Lesson = {
-  name: string
-  description: string
-  link: string
-}
+import { Lesson } from './LessonList'
 
 type Props = {
   match: {
@@ -20,12 +15,12 @@ type Props = {
 }
 
 export default function LessonPage({ match }:Props) {
-  const [lesson, setLessons] = useState<Lesson>({ name: 'Carregando...', description: '', link: '' })
+  const [lesson, setLesson] = useState<Lesson | null>(null)
   const classes = useStyles()
 
   useEffect(() => {
-    listLessons(match).then(setLessons)
-  }, [match.params.id])
+    listLessons(match).then(setLesson)
+  }, [match])
 
   return (
     <div>
@@ -45,7 +40,7 @@ export default function LessonPage({ match }:Props) {
 
 const listLessons = async match => {
   const { data } = await api.get(`/lessons/${match.params.id}`)
-  return data[0]
+  return data
 }
 
 const useStyles = makeStyles(() =>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -7,21 +7,16 @@ import CardContent from '@material-ui/core/CardContent'
 import CardActions from '@material-ui/core/CardActions'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import Modal from '@material-ui/core/Modal'
-import Container from '@material-ui/core/Container'
-import Paper from '@material-ui/core/Paper'
 import LogoImg from '../../assets/images/Logo.jpeg'
+import { useHistory } from 'react-router-dom'
+import { Lesson } from '../pages/LessonList'
 
-type LessonCardProps = {
-  name: string
-  description: string
-  link: string
-  image: string
-}
+type LessonCardProps = Lesson
 
-export default function LessonCard({ name, description, link, image }: LessonCardProps) {
+export default function LessonCard({ id, name, description, link, image }: LessonCardProps) {
   const classes = useStyles()
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const history = useHistory()
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -41,24 +36,12 @@ export default function LessonCard({ name, description, link, image }: LessonCar
       </CardContent>
       <CardActions disableSpacing>
         <Button
-          onClick={() => setModalIsOpen(true)}
+          onClick={() => history.push(`aula/${id}`)}
           className={classes.button}
           variant='contained'
           color='primary'
         >Detalhes</Button>
       </CardActions>
-      <Modal
-        open={modalIsOpen}
-        className={classes.modal}
-        onBackdropClick={() => setModalIsOpen(false)}
-        onEscapeKeyDown={() => setModalIsOpen(false)}
-      >
-        <Container className={classes.modalContainer} component={Paper}>
-          <Typography variant='h6'> {name} </Typography>
-          <Typography> Descrição: {description} </Typography>
-          <Typography> Link direto para aula: {link} </Typography>
-        </Container>
-      </Modal>
     </Card>
   )
 }
@@ -80,17 +63,6 @@ const useStyles = makeStyles(() =>
       marginRight: '3.2rem',
       fontWeight: 600,
       borderRadius: 15,
-    },
-    modal: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    modalContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'column',
     },
   }),
 )

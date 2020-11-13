@@ -53,6 +53,10 @@ export default function Header() {
     history.push('/cadastrar-aula')
   }
 
+  const toTeacherLessons = () => {
+    history.push('/suas-aulas')
+  }
+
   const toLessonList = () => {
     history.push('/')
   }
@@ -92,8 +96,9 @@ export default function Header() {
           { signedIn
             ? ([
               <MenuItem key='1' onClick={toCreateLesson}>Cadastrar aula</MenuItem>,
-              <MenuItem key='2' onClick={toTeacherInfo}>Suas informações</MenuItem>,
-              <MenuItem key='3' onClick={signOut}>Sair</MenuItem>,
+              <MenuItem key='2' onClick={toTeacherLessons}>Suas aulas</MenuItem>,
+              <MenuItem key='3' onClick={toTeacherInfo}>Suas informações</MenuItem>,
+              <MenuItem key='4' onClick={signOut}>Sair</MenuItem>,
             ])
             : ([
               <MenuItem key='1' onClick={toLogin}>Entrar</MenuItem>,

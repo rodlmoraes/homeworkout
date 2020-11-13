@@ -35,15 +35,10 @@ Quando('o usuário entrar na listagem de aula') do
   fill_in 'Busca',	with: ''
 end
 
-Então('todas as aulas cadastradas devem aparecer') do
-  expect(page).to have_content('Yoga')
-end
-
 Quando('o usuário clicar no botão da aula') do
   click_button 'Detalhes'
 end
 
-Então('deverá aparecer o nome da aula e o link dela') do
+Então('deverá aparecer o nome da aula') do
   expect(page).to have_content('Yoga')
-  expect(page).to have_content('https://www.youtube.com/link-aula')
 end

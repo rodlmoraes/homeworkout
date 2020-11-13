@@ -37,4 +37,32 @@ RSpec.describe Api::CurrentTeacherController, type: :controller, api: true do
       expect(body['email']).to eq(email)
     end
   end
+
+  describe 'GET lessons' do
+    let!(:teacher) { create(:teacher) }
+    let!(:lessons) do
+      create_list(:lesson, 5, teacher: teacher).map do |lesson|
+        lesson.attributes.except('created_at', 'updated_at')
+      end
+    end
+
+    let!(:another_teacher) { create(:teacher, email: 'another@email.com') }
+    let!(:lesson_with_another_teacher) { create(:lesson, teacher: another_teacher) }
+
+    let(:expected_response) { Lesson.where(id: [teacher_lesson_1.id, teacher_lesson_2.id]) }
+
+    before { get :lessons }
+
+    it 'returns only the lessons associated with the teacher' do
+      expect(
+        body.map { |lesson| lesson.except('teacher') }
+      ).to eq(lessons.map { |lesson| lesson.except('teacher_id') })
+    end
+
+    it "returns the correct lesson's teacher" do
+      expect(
+        body.map { |lesson| lesson['teacher']['id'] }
+      ).to eq(lessons.pluck('teacher_id'))
+    end
+  end
 end

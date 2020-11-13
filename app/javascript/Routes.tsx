@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import TeacherInfo from './pages/TeacherInfo'
 import AboutUs from './pages/AboutUs'
+import TeacherLessons from './pages/TeacherLessons'
 
 type RoutesProps = {
   route?: string
@@ -25,27 +26,28 @@ export default function Routes({ route }: RoutesProps) {
         <Route path='/' component={LessonList} exact />
         <Route path='/sobre-nos' component={AboutUs} exact />
         <Route path='/aula/:id' component={LessonPage} exact />
-        <PrivateRoute
-          path='/cadastrar-aula'
+        <PrivateRoute path='/cadastrar-aula'
           component={LessonForm}
           showCondition={signedIn}
           redirectPath='/'
         />
-        <PrivateRoute
-          path='/entrar'
+        <PrivateRoute path='/entrar'
           component={Login}
           showCondition={!signedIn}
           redirectPath='/cadastrar-aula'
         />
-        <PrivateRoute
-          path='/cadastrar'
+        <PrivateRoute path='/cadastrar'
           component={SignUp}
           showCondition={!signedIn}
           redirectPath='/cadastrar-aula'
         />
-        <PrivateRoute
-          path='/informacoes-do-professor'
+        <PrivateRoute path='/informacoes-do-professor'
           component={TeacherInfo}
+          showCondition={signedIn}
+          redirectPath='/entrar'
+        />
+        <PrivateRoute path='/suas-aulas'
+          component={TeacherLessons}
           showCondition={signedIn}
           redirectPath='/entrar'
         />

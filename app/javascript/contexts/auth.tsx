@@ -22,12 +22,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export function AuthProvider({ children }: PropsWithChildren<unknown>) {
   const { showAlert } = useAlert()
-  const [teacher, setTeacher] = useState<Teacher | null>(null)
-
-  useEffect(() => {
-    const loadedTeacher = loadAuth()
-    setTeacher(loadedTeacher)
-  }, [])
+  const [teacher, setTeacher] = useState<Teacher | null>(loadAuth())
 
   const authSignIn = async (email: string, password: string) => {
     const loadedTeacher = await signIn(email, password, showAlert)
