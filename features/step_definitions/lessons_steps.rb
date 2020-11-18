@@ -45,7 +45,7 @@ end
 
 Quando('ele visita a página com suas aulas e clica no botão de deletar uma aula') do
   visit '/suas-aulas'
-  click_button 'delete-icon'
+  click_button 'delete'
 end
 
 Então('a aula deve ser deletada e não aparecer mais na página') do

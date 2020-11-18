@@ -53,12 +53,9 @@ export default function UserMaterialList() {
                 <TableCell className={cellData}>{link}</TableCell>
                 <TableCell className={iconsCellData} >
                   <EditIcon className={icon} />
-                  <DeleteIcon
-                    type='button'
-                    className={icon}
-                    name='delete-icon'
-                    onClick={() => deleteLesson(id, deleteCallback)}
-                  />
+                  <Button name='delete' onClick={() => deleteLesson(id, deleteCallback)}>
+                    <DeleteIcon className={icon} />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -83,8 +80,27 @@ const deleteLesson = (id: string, deleteCallback: (id: string) => void) => {
   api.delete(`/lessons/${id}`).then(({ data }) => deleteCallback(data.id))
 }
 
-const useStyles = makeStyles((theme: Theme) => {
-  const baseIcon = {
+const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    marginTop: '3.5rem',
+    padding: 0,
+    border: '1px solid',
+    borderColor: theme.palette.primary.dark,
+  },
+  head: {
+    backgroundColor: theme.palette.primary.main,
+  },
+  cell: {
+    fontSize: '2rem',
+  },
+  cellData: {
+    fontSize: '1.2rem',
+  },
+  iconsCellData: {
+    fontSize: '1.2rem',
+    textAlign: 'right',
+  },
+  icon: {
     height: '2.4rem',
     width: '2.4rem',
     color: theme.palette.common.white,
@@ -92,34 +108,9 @@ const useStyles = makeStyles((theme: Theme) => {
     '&:hover': {
       color: theme.palette.primary.light,
     },
-  }
-
-  return {
-    container: {
-      marginTop: '3.5rem',
-      padding: 0,
-      border: '1px solid',
-      borderColor: theme.palette.primary.dark,
-    },
-    head: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    cell: {
-      fontSize: '2rem',
-    },
-    cellData: {
-      fontSize: '1.2rem',
-    },
-    iconsCellData: {
-      fontSize: '1.2rem',
-      textAlign: 'right',
-    },
-    icon: {
-      ...baseIcon,
-    },
-    addButtonContainer: {
-      textAlign: 'right',
-      padding: '2rem',
-    },
-  }
-})
+  },
+  addButtonContainer: {
+    textAlign: 'right',
+    padding: '2rem',
+  },
+}))
