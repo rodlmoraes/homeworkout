@@ -14,6 +14,12 @@ module Api
       render json: lesson, status: :ok
     end
 
+    def update
+      updated = Lessons::Update.call(update_params)
+
+      render json: updated, status: :ok
+    end
+
     def show
       lesson = Lessons::Get.call(show_params)
 
@@ -34,6 +40,10 @@ module Api
 
     def create_params
       params[:lesson].permit(:name, :description, :link, :image).merge(teacher: current_teacher)
+    end
+
+    def update_params
+      params[:lesson].permit(:name, :description, :link, :image).merge(params.permit(:id))
     end
 
     def show_params

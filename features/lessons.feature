@@ -10,6 +10,11 @@ Dado que o professor esteja cadastrado
 Quando ele visita a página de cadastrar aulas e preenche o formulário
 Então o cadastro da aula deve ser efetuado
 
+Cenário: Atualizar uma aula
+Dado que o professor tenha aulas cadastradas
+Quando ele visita a página de atualizar aulas e preenche novos dados
+Então a aula deve ser atualizada
+
 Cenário: Deletar uma aula
 Dado que o professor tenha aulas cadastradas
 Quando ele visita a página com suas aulas e clica no botão de deletar uma aula

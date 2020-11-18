@@ -52,7 +52,9 @@ export default function UserMaterialList() {
                 <TableCell className={cellData}>{description}</TableCell>
                 <TableCell className={cellData}>{link}</TableCell>
                 <TableCell className={iconsCellData} >
-                  <EditIcon className={icon} />
+                  <Button name='update' onClick={() => history.push(`atualizar-aula/${id}`)}>
+                    <EditIcon className={icon} />
+                  </Button>
                   <Button name='delete' onClick={() => deleteLesson(id, deleteCallback)}>
                     <DeleteIcon className={icon} />
                   </Button>
@@ -85,10 +87,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: '3.5rem',
     padding: 0,
     border: '1px solid',
-    borderColor: theme.palette.primary.dark,
+    borderColor: theme.palette.secondary.dark,
   },
   head: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.main,
   },
   cell: {
     fontSize: '2rem',
@@ -106,7 +108,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.common.white,
     cursor: 'pointer',
     '&:hover': {
-      color: theme.palette.primary.light,
+      color: theme.palette.secondary.light,
     },
   },
   addButtonContainer: {
