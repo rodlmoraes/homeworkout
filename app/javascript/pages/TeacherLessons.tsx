@@ -28,6 +28,10 @@ export default function UserMaterialList() {
 
   const { container, head, cell, cellData, icon, addButtonContainer, iconsCellData } = useStyles()
 
+  const deleteCallback = (id: string) => {
+    setLessons(lessons.filter(lesson => lesson.id !== id))
+  }
+
   return (
     <>
       <Header />
@@ -49,7 +53,12 @@ export default function UserMaterialList() {
                 <TableCell className={cellData}>{link}</TableCell>
                 <TableCell className={iconsCellData} >
                   <EditIcon className={icon} />
-                  <DeleteIcon className={icon} />
+                  <DeleteIcon
+                    type='button'
+                    className={icon}
+                    name='delete-icon'
+                    onClick={() => deleteLesson(id, deleteCallback)}
+                  />
                 </TableCell>
               </TableRow>
             ))}
@@ -68,6 +77,10 @@ export default function UserMaterialList() {
       </Container>
     </>
   )
+}
+
+const deleteLesson = (id: string, deleteCallback: (id: string) => void) => {
+  api.delete(`/lessons/${id}`).then(({ data }) => deleteCallback(data.id))
 }
 
 const useStyles = makeStyles((theme: Theme) => {

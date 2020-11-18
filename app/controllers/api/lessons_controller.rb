@@ -20,6 +20,12 @@ module Api
       render json: lesson, status: :ok
     end
 
+    def destroy
+      lesson = Lessons::Delete.call(destroy_params)
+
+      render json: lesson, status: :ok
+    end
+
     private
 
     def index_params
@@ -31,6 +37,10 @@ module Api
     end
 
     def show_params
+      params.permit(:id)
+    end
+
+    def destroy_params
       params.permit(:id)
     end
   end

@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useEffect, useState, useContext } from 'react'
+import React, { createContext, PropsWithChildren, useState, useContext } from 'react'
 
 import { signIn, signUp, loadAuth, signOut } from '../services/auth'
 import { useAlert } from './alert'

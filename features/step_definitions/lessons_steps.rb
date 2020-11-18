@@ -42,3 +42,14 @@ end
 Então('deverá aparecer o nome da aula') do
   expect(page).to have_content('Yoga')
 end
+
+Quando('ele visita a página com suas aulas e clica no botão de deletar uma aula') do
+  visit '/suas-aulas'
+  click_button 'delete-icon'
+end
+
+Então('a aula deve ser deletada e não aparecer mais na página') do
+  expect(page).not_to have_content('Yoga')
+  expect(page).not_to have_content('https://www.youtube.com/link-aula')
+  expect(page).not_to have_content('Venha ficar flexível')
+end

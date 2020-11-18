@@ -59,4 +59,19 @@ RSpec.describe Api::LessonsController, type: :controller, api: true do
       expect(body['teacher']['id']).to eq(teacher.id)
     end
   end
+
+  describe 'DELETE destroy' do
+    let!(:lesson) { create(:lesson, teacher: teacher).attributes.except('created_at', 'updated_at') }
+    let(:params) { { id: lesson['id'] } }
+
+    before do
+      request.headers.merge!(teacher.create_new_auth_token)
+      delete :destroy, params: params
+    end
+
+    it 'deletes the lesson' do
+      expect(body.except('teacher')).to eq(lesson.except('teacher_id'))
+      expect(Lesson.where(id: body['id'])).to eq([])
+    end
+  end
 end
