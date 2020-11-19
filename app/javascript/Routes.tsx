@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp'
 import TeacherInfo from './pages/TeacherInfo'
 import AboutUs from './pages/AboutUs'
 import TeacherLessons from './pages/TeacherLessons'
+import UpdateLessonForm from './pages/UpdateLessonForm'
 
 type RoutesProps = {
   route?: string
@@ -28,6 +29,11 @@ export default function Routes({ route }: RoutesProps) {
         <Route path='/aula/:id' component={LessonPage} exact />
         <PrivateRoute path='/cadastrar-aula'
           component={LessonForm}
+          showCondition={signedIn}
+          redirectPath='/'
+        />
+        <PrivateRoute path='/atualizar-aula/:id'
+          component={UpdateLessonForm}
           showCondition={signedIn}
           redirectPath='/'
         />

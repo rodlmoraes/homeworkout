@@ -60,6 +60,33 @@ RSpec.describe Api::LessonsController, type: :controller, api: true do
     end
   end
 
+  describe 'PUT update' do
+    let!(:lesson) { create(:lesson, teacher: teacher) }
+    let(:params) do
+      {
+        id: lesson.id,
+        lesson: lesson_params
+      }
+    end
+    let(:lesson_params) { { name: 'joana', description: 'jasdhkerubfelj', link: 'http.com.br', image: 'image' } }
+
+    before do
+      request.headers.merge!(teacher.create_new_auth_token)
+      put :update, params: params
+    end
+
+    [:name, :description, :link, :image].each do |param|
+      it "updates lesson #{param}" do
+        response
+        expect(lesson.reload.send(param)).to eq(lesson_params[param])
+      end
+    end
+
+    it 'returns true' do
+      expect(body).to eq(true)
+    end
+  end
+
   describe 'DELETE destroy' do
     let!(:lesson) { create(:lesson, teacher: teacher).attributes.except('created_at', 'updated_at') }
     let(:params) { { id: lesson['id'] } }

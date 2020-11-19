@@ -14,7 +14,7 @@ type Props = {
   }
 }
 
-export default function LessonPage({ match }:Props) {
+export default function LessonPage({ match }: Props) {
   const [lesson, setLesson] = useState<Lesson | null>(null)
   const classes = useStyles()
 

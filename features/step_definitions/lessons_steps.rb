@@ -53,3 +53,19 @@ Então('a aula deve ser deletada e não aparecer mais na página') do
   expect(page).not_to have_content('https://www.youtube.com/link-aula')
   expect(page).not_to have_content('Venha ficar flexível')
 end
+
+Quando('ele visita a página de atualizar aulas e preenche novos dados') do
+  visit '/suas-aulas'
+  click_button 'update'
+
+  fill_in 'Nome da aula',	with: 'Skate'
+  fill_in 'Link da Aula',	with: 'https://www.youtube.com/skate'
+  fill_in 'Descrição da Aula',	with: 'Venha ficar maneiro com skate'
+  click_button 'Salvar Atualização'
+end
+
+Então('a aula deve ser atualizada') do
+  expect(page).to have_content('Skate')
+  expect(page).to have_content('https://www.youtube.com/skate')
+  expect(page).to have_content('Venha ficar maneiro com skate')
+end
