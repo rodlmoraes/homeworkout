@@ -61,10 +61,10 @@ const useStyles = makeStyles(() =>
   createStyles({
     lessonList: {
       display: 'flex',
-      flexDirection: 'column',
-      padding: '2rem',
       alignItems: 'center',
+      flexDirection: 'column',
       borderRadius: 15,
+      padding: '2rem',
       margin: '4rem',
     },
     button: {

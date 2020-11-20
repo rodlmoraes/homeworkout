@@ -82,16 +82,16 @@ export default function LessonForm() {
 
 const useStyles = makeStyles(() =>
   createStyles({
-    card: {
-      display: 'flex',
-      flexDirection: 'column',
-      padding: '2rem',
-      alignItems: 'center',
-      borderRadius: 15,
-      margin: '4rem',
-    },
     button: {
       marginTop: '0.8rem',
+    },
+    card: {
+      display: 'flex',
+      margin: '4rem',
+      flexDirection: 'column',
+      alignItems: 'center',
+      borderRadius: 15,
+      padding: '2rem',
     },
   }),
 )

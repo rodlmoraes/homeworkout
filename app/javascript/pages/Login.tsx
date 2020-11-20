@@ -10,10 +10,10 @@ import LargeButton from '../components/LargeButton'
 export default function Login() {
   const { signIn } = useAuth()
 
+  const classes = useStyles()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const classes = useStyles()
 
   return (
     <>
@@ -45,11 +45,11 @@ export default function Login() {
 const useStyles = makeStyles(() =>
   createStyles({
     cardLogin: {
-      display: 'flex',
-      flexDirection: 'column',
-      padding: '2rem',
       alignItems: 'center',
+      flexDirection: 'column',
+      display: 'flex',
       borderRadius: 15,
+      padding: '2rem',
       margin: '4rem',
     },
   }),

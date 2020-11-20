@@ -75,12 +75,12 @@ const getCurrentTeacher = async () => {
 const useStyles = makeStyles(() =>
   createStyles({
     cardInfo: {
+      borderRadius: 15,
+      padding: '2rem',
+      margin: '4rem',
       display: 'flex',
       flexDirection: 'column',
-      padding: '2rem',
       alignItems: 'center',
-      borderRadius: 15,
-      margin: '4rem',
     },
     button: {
       marginTop: '0.8rem',

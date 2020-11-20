@@ -8,12 +8,11 @@ import SecretInput from '../components/SecretInput'
 import LargeButton from '../components/LargeButton'
 
 export default function SignUp() {
-  const { signUp } = useAuth()
-
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  const [email, setEmail] = useState('')
   const classes = useStyles()
+
+  const { signUp } = useAuth()
 
   return (
     <>
@@ -45,12 +44,12 @@ export default function SignUp() {
 const useStyles = makeStyles(() =>
   createStyles({
     cardSingUp: {
+      margin: '4rem',
+      padding: '2rem',
       display: 'flex',
       flexDirection: 'column',
-      padding: '2rem',
       alignItems: 'center',
       borderRadius: 15,
-      margin: '4rem',
     },
   }),
 )
