@@ -8,12 +8,7 @@ export const signUp = async (email: string, password: string, showAlert: (alertT
     const { headers, headers: { uid, client }, data } = response
     const accessToken = headers['access-token']
 
-    api.defaults.headers.common = {
-      ...api.defaults.headers.common,
-      'access-token': accessToken,
-      uid,
-      client,
-    }
+    updateRequestHeaders({ accessToken, uid, client })
 
     localStorage.setItem('@homeworkout/teacher', JSON.stringify(data.data))
     localStorage.setItem('@homeworkout/access-token', accessToken)
@@ -34,12 +29,7 @@ export const signIn = async (email: string, password: string, showAlert: (alertT
     const { headers, headers: { uid, client }, data } = response
     const accessToken = headers['access-token']
 
-    api.defaults.headers.common = {
-      ...api.defaults.headers.common,
-      'access-token': accessToken,
-      uid,
-      client,
-    }
+    updateRequestHeaders({ accessToken, uid, client })
 
     localStorage.setItem('@homeworkout/teacher', JSON.stringify(data.data))
     localStorage.setItem('@homeworkout/access-token', accessToken)
@@ -58,12 +48,7 @@ export const signOut = async (showAlert: (alertText: string) => void) => {
   try {
     await api.delete('/teacher_auth/sign_out')
 
-    api.defaults.headers.common = {
-      ...api.defaults.headers.common,
-      'access-token': null,
-      uid: null,
-      client: null,
-    }
+    updateRequestHeaders({ accessToken: null, uid: null, client: null })
 
     localStorage.clear()
 
@@ -83,12 +68,16 @@ export const loadAuth = () => {
 
   if (!storedTeacher || !accessToken || !uid || !client) return null
 
+  updateRequestHeaders({ accessToken, uid, client })
+
+  return JSON.parse(storedTeacher)
+}
+
+const updateRequestHeaders = ({ accessToken, uid, client }) => {
   api.defaults.headers.common = {
     ...api.defaults.headers.common,
     'access-token': accessToken,
     uid,
     client,
   }
-
-  return JSON.parse(storedTeacher)
 }
