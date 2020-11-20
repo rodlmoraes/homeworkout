@@ -11,9 +11,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const classes = useStyles()
-
   const { signUp } = useAuth()
-
   return (
     <>
       <Header/>
@@ -26,16 +24,8 @@ export default function SignUp() {
           placeholder='Digite aqui seu email'
           value={email}
         />
-        <SecretInput
-          onChange= {e => { setPassword(e.target.value) }}
-          value={password}
-        />
-        <LargeButton
-          color='secondary'
-          onClick={() => signUp(email, password)}
-        >
-            Cadastrar
-        </LargeButton>
+        <SecretInput onChange= {e => { setPassword(e.target.value) }} value={password} />
+        <LargeButton color='secondary' onClick={() => signUp(email, password)}>Cadastrar</LargeButton>
       </Card>
     </>
   )

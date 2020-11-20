@@ -15,56 +15,38 @@ type Teacher = {
   email: string
 }
 
-export default function LessonForm() {
+export default function TeacherInfo() {
   const history = useHistory()
   const { showAlert } = useAlert()
-
   const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
-
-  useEffect(() => {
-    getCurrentTeacher().then(setTeacher)
-  }, [])
-
-  const handleCreateClass = async () => {
-    try {
-      await api.put('/current_teacher/0', {
-        teacher,
-      })
-      showAlert('Informações atualizadas!')
-      history.push('/')
-    } catch {
-      alert('Erro ao tentar atualizar informações!')
-    }
-  }
-
+  useEffect(() => { getCurrentTeacher().then(setTeacher) }, [])
   const classes = useStyles()
-
   return (
     <>
       <Header/>
       <Card className={classes.cardInfo}>
         <Typography variant='h3'>Suas informações</Typography>
-        <TextInput
-          name='Nome'
-          label='Nome'
-          onChange= {e => { setTeacher({ ...teacher, name: e.target.value }) }}
-          placeholder= 'Seu nome'
-          value={teacher.name}
-        />
-        <UploadButton
-          image={teacher.image}
-          setImage={image => setTeacher({ ...teacher, image })}
-          buttonText='Escolha sua foto de perfil'
-        />
-        <LargeButton
-          color='primary'
-          onClick={handleCreateClass}
-        >
+        <TextInput name='Nome' label='Nome'
+          onChange= {e => { setTeacher({ ...teacher, name: e.target.value }) }} placeholder= 'Seu nome'
+          value={teacher.name} />
+        <UploadButton image={teacher.image} setImage={image => setTeacher({ ...teacher, image })}
+          buttonText='Escolha sua foto de perfil'/>
+        <LargeButton color='primary' onClick={() => handleCreateClass({ teacher, showAlert, history })}>
           Salvar Cadastro
         </LargeButton>
       </Card>
     </>
   )
+}
+
+const handleCreateClass = async ({ teacher, showAlert, history }) => {
+  try {
+    await api.put('/current_teacher/0', { teacher })
+    showAlert('Informações atualizadas!')
+    history.push('/')
+  } catch {
+    alert('Erro ao tentar atualizar informações!')
+  }
 }
 
 const getCurrentTeacher = async () => {

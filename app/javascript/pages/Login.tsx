@@ -9,12 +9,9 @@ import LargeButton from '../components/LargeButton'
 
 export default function Login() {
   const { signIn } = useAuth()
-
   const classes = useStyles()
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
   return (
     <>
       <Header/>
@@ -27,16 +24,8 @@ export default function Login() {
           placeholder='Digite aqui seu email'
           value={email}
         />
-        <SecretInput
-          onChange= {e => { setPassword(e.target.value) }}
-          value={password}
-        />
-        <LargeButton
-          color='secondary'
-          onClick={() => signIn(email, password)}
-        >
-            Entrar
-        </LargeButton>
+        <SecretInput onChange={e => { setPassword(e.target.value) }} value={password} />
+        <LargeButton color='secondary' onClick={() => signIn(email, password)}>Entrar</LargeButton>
       </Card>
     </>
   )
