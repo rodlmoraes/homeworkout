@@ -29,7 +29,7 @@ export default function LessonList() {
           placeholder='Nome ou descrição da aula' value={query}
         />
         <Grid container spacing={3}>
-          {lessons.map(({ id, name, description, link, image }, key) => (<Grid key={key} item xs={3}>
+          {lessons.map(({ id, name, description, link, image }, key) => (<Grid className={classes.lessonGrid} key={key} item xs={3}>
             <LessonCard id={id} name={name} description={description} link={link} image={image} />
           </Grid>))}
         </Grid>
@@ -55,6 +55,9 @@ const useStyles = makeStyles(() =>
     },
     button: {
       marginTop: '0.8rem',
+    },
+    lessonGrid: {
+      padding: 10,
     },
   }),
 )
