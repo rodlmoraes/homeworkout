@@ -4,7 +4,7 @@ import { render } from '@testing-library/react'
 import SignUp from '../../pages/SignUp'
 
 test('renders SignUp', () => {
-  const { getByText, getAllByText } = render(<SignUp/>)
+  const{ getByText, getAllByText } = render(<SignUp/>)
   getByText('HomeWorkout')
   getByText('Cadastre-se e adicione novas aulas!')
   getAllByText('Email')

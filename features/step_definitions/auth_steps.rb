@@ -3,6 +3,7 @@ Dado('que um usuário do sistema queira se cadastrar') do
 end
 
 Quando('ele insere seu email e senha') do
+  fill in 'Nome', with: 'Test'
   fill_in 'Email',	with: 'test@test.com'
   fill_in 'Senha',	with: '123456'
   click_button 'Cadastrar'

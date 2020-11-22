@@ -10,6 +10,7 @@ import LargeButton from '../components/LargeButton'
 export default function SignUp() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
+  const[name, setName] = useState('')
   const classes = useStyles()
   const { signUp } = useAuth()
   return (
@@ -18,6 +19,13 @@ export default function SignUp() {
       <Card className={classes.cardSingUp}>
         <Typography variant='h3'>Cadastre-se e adicione novas aulas!</Typography>
         <TextInput
+          name='Nome'
+          label='Nome'
+          onChange= {e => { setName(e.target.value) }}
+          placeholder='Digite aqui seu Nome'
+          value={name}
+        />
+        <TextInput
           name='Email'
           label='Email'
           onChange= {e => { setEmail(e.target.value) }}
@@ -25,7 +33,7 @@ export default function SignUp() {
           value={email}
         />
         <SecretInput onChange= {e => { setPassword(e.target.value) }} value={password} />
-        <LargeButton color='secondary' onClick={() => signUp(email, password)}>Cadastrar</LargeButton>
+        <LargeButton color='secondary' onClick={() => signUp(name, email, password)}>Cadastrar</LargeButton>
       </Card>
     </>
   )
