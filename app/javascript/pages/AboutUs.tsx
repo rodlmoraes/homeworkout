@@ -47,15 +47,47 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 15,
     height: 400,
     width: 300,
-  }
+  },
 }))
 
-const cards = [{ title: 'Carolina Galvão', description: 'Desenvolvedora', image: 'https://bit.ly/36gZ1DF', link: 'https://www.linkedin.com/in/carolina-galv%C3%A3o/' },
-  { title: 'Rodrigo Moraes', description: 'Desenvolvedor', image: 'https://bit.ly/3lgLUZy', link: 'https://www.linkedin.com/in/rodrigo-moraes-31738617b/' },
-  { title: 'Rogério Ferreira', description: 'Desenvolvedor', image: 'https://bit.ly/3lgLVwA', link: 'https://www.linkedin.com/in/rogerio-ferreira-santos/' },
-  { title: 'Vinícius Bueno', description: 'Desenvolvedor', image: 'https://bit.ly/372FuqS', link: 'https://www.linkedin.com/in/vinicius-bueno-de-carvalho-rodrigues-27442b151/' },
-  { title: 'Júlia Passos', description: 'Desenvolvedora', image: 'https://bit.ly/3pbQ47i', link: 'https://www.linkedin.com/in/juliacbpassos/' },
-  { title: 'João Fukuda', description: 'Desenvolvedor', image: 'https://bit.ly/3pRX6P3', link: 'https://www.linkedin.com/in/joaofukuda/' }]
+const cards = [
+  {
+    title: 'Carolina Galvão',
+    description: 'Desenvolvedora',
+    image: 'https://bit.ly/36gZ1DF',
+    link: 'https://bit.ly/2IWKPb4',
+  },
+  {
+    title: 'Rodrigo Moraes',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/3lgLUZy',
+    link: 'https://www.linkedin.com/in/rodrigo-moraes-31738617b/',
+  },
+  {
+    title: 'Rogério Ferreira',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/3lgLVwA',
+    link: 'https://www.linkedin.com/in/rogerio-ferreira-santos/',
+  },
+  {
+    title: 'Vinícius Bueno',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/372FuqS',
+    link: 'https://www.linkedin.com/in/vinicius-bueno-de-carvalho-rodrigues-27442b151/',
+  },
+  {
+    title: 'Júlia Passos',
+    description: 'Desenvolvedora',
+    image: 'https://bit.ly/3pbQ47i',
+    link: 'https://www.linkedin.com/in/juliacbpassos/',
+  },
+  {
+    title: 'João Fukuda',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/3pRX6P3',
+    link: 'https://www.linkedin.com/in/joaofukuda/',
+  },
+]
 
 export default function AboutUs() {
   const classes = useStyles()
@@ -95,7 +127,7 @@ export default function AboutUs() {
                       <Typography gutterBottom variant='h5' component='h2'>
                         { title }
                       </Typography>
-                    </a>  
+                    </a>
                     <Typography>
                       { description }
                     </Typography>
