@@ -10,7 +10,7 @@ import LargeButton from '../components/LargeButton'
 export default function SignUp() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
-  const[name, setName] = useState('')
+  const [name, setName] = useState('')
   const classes = useStyles()
   const { signUp } = useAuth()
   return (
