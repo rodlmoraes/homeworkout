@@ -11,6 +11,20 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { useAuth } from '../contexts/auth'
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+    leftItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+  }),
+)
+
 export default function Header() {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -23,27 +37,76 @@ export default function Header() {
     setAnchorEl(event.currentTarget)
   }
 
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const toLogin = () => {
+    history.push('/entrar')
+  }
+
+  const toSignUp = () => {
+    history.push('/cadastrar')
+  }
+
+  const toCreateLesson = () => {
+    history.push('/cadastrar-aula')
+  }
+
+  const toTeacherLessons = () => {
+    history.push('/suas-aulas')
+  }
+
+  const toLessonList = () => {
+    history.push('/')
+  }
+
+  const toTeacherInfo = () => {
+    history.push('/informacoes-do-professor')
+  }
+
+  const toAboutUs = () => {
+    history.push('/sobre-nos')
+  }
+
   return (
     <AppBar position='static'>
       <Toolbar className={classes.toolbar}>
-        <IconButton data-testid='menu-button' onClick={handleClick}><MenuIcon /></IconButton>
-        <Menu open={open} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-          PaperProps={{ style: { width: '12rem' } }} getContentAnchorEl={null}>
+        <IconButton
+          data-testid='menu-button'
+          onClick={handleClick}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          open={open}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          PaperProps={{
+            style: {
+              width: '12rem',
+            },
+          }}
+          getContentAnchorEl={null}
+        >
           <MenuItem onClick={toLessonList}>Lista de aulas</MenuItem>
           { signedIn
             ? ([
-              <MenuItem key='1' onClick={() => toCreateLesson(history)}>Cadastrar aula</MenuItem>,
-              <MenuItem key='2' onClick={() => toTeacherLessons(history)}>Suas aulas</MenuItem>,
-              <MenuItem key='3' onClick={() => toTeacherInfo(history)}>Suas informações</MenuItem>,
+              <MenuItem key='1' onClick={toCreateLesson}>Cadastrar aula</MenuItem>,
+              <MenuItem key='2' onClick={toTeacherLessons}>Suas aulas</MenuItem>,
+              <MenuItem key='3' onClick={toTeacherInfo}>Suas informações</MenuItem>,
               <MenuItem key='4' onClick={signOut}>Sair</MenuItem>,
             ])
             : ([
-              <MenuItem key='1' onClick={() => toLogin(history)}>Entrar</MenuItem>,
-              <MenuItem key='2' onClick={() => toSignUp(history)}>Cadastrar</MenuItem>,
+              <MenuItem key='1' onClick={toLogin}>Entrar</MenuItem>,
+              <MenuItem key='2' onClick={toSignUp}>Cadastrar</MenuItem>,
             ]) }
-          <MenuItem onClick={() => toAboutUs}>Sobre nós</MenuItem>
+          <MenuItem onClick={toAboutUs}>Sobre nós</MenuItem>
         </Menu>
-        <Typography variant='h6' style={{ cursor: 'pointer' }} onClick={() => toLessonList(history)}>
+        <Typography variant='h6' style={{ cursor: 'pointer' }} onClick={toLessonList}>
           HomeWorkout
         </Typography>
         <div className={classes.leftItem}>
@@ -58,33 +121,3 @@ export default function Header() {
     </AppBar>
   )
 }
-
-const handleClose = setAnchorEl => { setAnchorEl(null) }
-
-const toLogin = history => { history.push('/entrar') }
-
-const toSignUp = history => { history.push('/cadastrar') }
-
-const toCreateLesson = history => { history.push('/cadastrar-aula') }
-
-const toTeacherLessons = history => { history.push('/suas-aulas') }
-
-const toLessonList = history => { history.push('/') }
-
-const toTeacherInfo = history => { history.push('/informacoes-do-professor') }
-
-const toAboutUs = history => { history.push('/sobre-nos') }
-
-const useStyles = makeStyles(() =>
-  createStyles({
-    toolbar: {
-      display: 'flex',
-      justifyContent: 'space-between',
-    },
-    leftItem: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-  }),
-)
