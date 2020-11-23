@@ -11,6 +11,22 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import { useAuth } from '../contexts/auth'
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+    leftItem: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+  }),
+)
+
+const avatarSettings = 'rounded=true&size=32&bold=true&color=131419&background=e4e4e4'
+
 export default function Header() {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -51,7 +67,15 @@ export default function Header() {
             {teacher?.name}
           </Typography>
           <IconButton data-testid='login-button' color='inherit' onClick={toLogin} >
-            <AccountCircle />
+            { teacher && (teacher.name !== '' || teacher.image)
+              ? teacher.image
+                ? teacher.image
+                : <img src={`https://ui-avatars.com/api/
+                  ?name=${teacher.name.replace(/ /g, '+')}
+                  &length=${Math.min(2, teacher.name.split(' ').length)}
+                  &${avatarSettings}`} />
+              : <AccountCircle />
+            }
           </IconButton>
         </div>
       </Toolbar>
