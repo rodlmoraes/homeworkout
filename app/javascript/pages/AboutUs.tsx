@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardMedia: {
     paddingTop: '56.25%',
+    height: 300,
   },
   cardContent: {
     flexGrow: 1,
@@ -39,14 +40,54 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
   },
+  innerCardGrid: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    height: 400,
+    width: 300,
+  },
 }))
 
-const cards = [{ title: 'Carolina', description: 'Desenvolvedora Topster', image: 'https://bit.ly/36gZ1DF' },
-  { title: 'Rodrigo', description: 'Desenvolvedor Topster', image: 'https://bit.ly/3lgLUZy' },
-  { title: 'Rogério', description: 'Desenvolvedor Topster', image: 'https://bit.ly/3lgLVwA' },
-  { title: 'Vinícius', description: 'Desenvolvedor Topster', image: '..' },
-  { title: 'Julia', description: 'Desenvolvedora Topster', image: 'https://bit.ly/3pbQ47i' },
-  { title: 'João', description: 'Desenvolvedor Topster', image: '..' }]
+const cards = [
+  {
+    title: 'Carolina Galvão',
+    description: 'Desenvolvedora',
+    image: 'https://bit.ly/36gZ1DF',
+    link: 'https://bit.ly/2IWKPb4',
+  },
+  {
+    title: 'Rodrigo Moraes',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/3lgLUZy',
+    link: 'https://www.linkedin.com/in/rodrigo-moraes-31738617b/',
+  },
+  {
+    title: 'Rogério Ferreira',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/3lgLVwA',
+    link: 'https://www.linkedin.com/in/rogerio-ferreira-santos/',
+  },
+  {
+    title: 'Vinícius Bueno',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/372FuqS',
+    link: 'https://www.linkedin.com/in/vinicius-bueno-de-carvalho-rodrigues-27442b151/',
+  },
+  {
+    title: 'Júlia Passos',
+    description: 'Desenvolvedora',
+    image: 'https://bit.ly/3pbQ47i',
+    link: 'https://www.linkedin.com/in/juliacbpassos/',
+  },
+  {
+    title: 'João Fukuda',
+    description: 'Desenvolvedor',
+    image: 'https://bit.ly/3pRX6P3',
+    link: 'https://www.linkedin.com/in/joaofukuda/',
+  },
+]
 
 export default function AboutUs() {
   const classes = useStyles()
@@ -56,15 +97,15 @@ export default function AboutUs() {
       <Header />
       <main>
         <div className={classes.heroContent}>
-          <Container maxWidth='sm'>
+          <Container maxWidth='lg'>
             <Typography component='h1' variant='h2' align='center' color='textPrimary' gutterBottom>
               Sobre Nós
             </Typography>
-            <Typography variant='h5' align='center' color='textSecondary' paragraph>
-              A Empresa Homeworkout surgiu em meados de 2020 durante o período de
-              isolamento devido a pandemia do COVID-19
+            <Typography variant='h5' align='center' color='textSecondary' paragraph >
+              A Empresa Homeworkout surgiu em 2020, durante o período de
+              isolamento devido a pandemia do COVID-19,
               com o intuito de fornecer aulas de exercícios físicos a pessoas impossibilitadas
-              de sairem de suas casas.
+              de saírem de suas casas
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify='center'>
@@ -74,17 +115,19 @@ export default function AboutUs() {
         </div>
         <Container className={classes.cardGrid} maxWidth='md'>
           <Grid container spacing={ 4 }>
-            { cards.map(({ title, image, description }, key) => (
-              <Grid key={ key }>
+            { cards.map(({ title, image, description, link }, key) => (
+              <Grid key={ key } className={classes.innerCardGrid}>
                 <Card className={ classes.card }>
                   <CardMedia
                     className={ classes.cardMedia }
                     image={ image }
                   />
                   <CardContent className={ classes.cardContent }>
-                    <Typography gutterBottom variant='h5' component='h2'>
-                      { title }
-                    </Typography>
+                    <a href= { link } target='blank_' >
+                      <Typography gutterBottom variant='h5' component='h2'>
+                        { title }
+                      </Typography>
+                    </a>
                     <Typography>
                       { description }
                     </Typography>
