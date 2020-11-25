@@ -14,7 +14,6 @@ export default function SignUp() {
   const [name, setName] = useState('')
   const classes = useStyles()
   const { signUp } = useAuth()
-
   return (
     <>
       <Header/>
@@ -54,12 +53,12 @@ const putName = async (name: string) => {
 const useStyles = makeStyles(() =>
   createStyles({
     cardSingUp: {
+      margin: '4rem',
+      padding: '2rem',
       display: 'flex',
       flexDirection: 'column',
-      padding: '2rem',
       alignItems: 'center',
       borderRadius: 15,
-      margin: '4rem',
     },
   }),
 )

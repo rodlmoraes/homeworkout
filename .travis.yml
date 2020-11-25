@@ -17,12 +17,13 @@ before_install:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
 install:
+  - bundle install
   - yarn install
 before_script:
   - cp config/database.travis.yml config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
-  - RAILS_ENV=test bundle exec rails db:migrate
 script:
+  - RAILS_ENV=test bundle exec rails db:migrate
   - bundle exec rspec
   - yarn test -- --coverage
   - yarn tsc
