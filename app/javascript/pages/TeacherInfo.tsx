@@ -21,6 +21,17 @@ export default function TeacherInfo() {
   const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
   useEffect(() => { getCurrentTeacher().then(setTeacher) }, [])
   const classes = useStyles()
+
+  const handleCreateClass = async () => {
+    try {
+      await api.put('/current_teacher/0', { teacher })
+      showAlert('Informações atualizadas!')
+      history.push('/')
+    } catch {
+      alert('Erro ao tentar atualizar informações!')
+    }
+  }
+
   return (
     <>
       <Header/>
@@ -31,22 +42,12 @@ export default function TeacherInfo() {
           value={teacher.name} />
         <UploadButton image={teacher.image} setImage={image => setTeacher({ ...teacher, image })}
           buttonText='Escolha sua foto de perfil'/>
-        <LargeButton color='primary' onClick={() => handleCreateClass({ teacher, showAlert, history })}>
+        <LargeButton color='primary' onClick={handleCreateClass}>
           Salvar Cadastro
         </LargeButton>
       </Card>
     </>
   )
-}
-
-const handleCreateClass = async ({ teacher, showAlert, history }) => {
-  try {
-    await api.put('/current_teacher/0', { teacher })
-    showAlert('Informações atualizadas!')
-    history.push('/')
-  } catch {
-    alert('Erro ao tentar atualizar informações!')
-  }
 }
 
 const getCurrentTeacher = async () => {

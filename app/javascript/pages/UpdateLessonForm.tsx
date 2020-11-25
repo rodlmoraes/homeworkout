@@ -95,8 +95,8 @@ const getLesson = async (id: string) => {
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
-      display: 'flex',
       flexDirection: 'column',
+      display: 'flex',
       padding: '2rem',
       alignItems: 'center',
       borderRadius: 15,
