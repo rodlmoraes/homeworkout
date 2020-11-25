@@ -25,7 +25,7 @@ export default function UpdateLessonForm({ match }: Props) {
   const { id } = match.params
 
   const [lesson, setLesson] = useState<Lesson>({
-    id, name: '', description: '', image: '', link: '',
+    id, name: '', description: '', image: '', link: '', teacher: { email: '', id: 0, name: '', image: '' },
   })
 
   useEffect(() => {
@@ -95,8 +95,8 @@ const getLesson = async (id: string) => {
 const useStyles = makeStyles(() =>
   createStyles({
     card: {
-      display: 'flex',
       flexDirection: 'column',
+      display: 'flex',
       padding: '2rem',
       alignItems: 'center',
       borderRadius: 15,

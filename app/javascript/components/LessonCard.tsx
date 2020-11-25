@@ -13,7 +13,7 @@ import { Lesson } from '../pages/LessonList'
 
 type LessonCardProps = Lesson
 
-export default function LessonCard({ id, name, description, link, image }: LessonCardProps) {
+export default function LessonCard({ id, name, description, image }: LessonCardProps) {
   const classes = useStyles()
   const history = useHistory()
 
@@ -30,8 +30,6 @@ export default function LessonCard({ id, name, description, link, image }: Lesso
       <CardContent>
         <Typography variant='body2' component='p'>
           {description}
-          <br/>
-          {link}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -50,11 +48,13 @@ const useStyles = makeStyles(() =>
   createStyles({
     card: {
       maxWidth: '22rem',
+      width: '100%',
       height: '25rem',
       borderRadius: 15,
     },
     media: {
       paddingTop: '56.25%',
+      height: '10rem',
     },
     button: {
       width: '250px',
