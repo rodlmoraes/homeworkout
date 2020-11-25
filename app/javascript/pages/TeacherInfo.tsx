@@ -8,17 +8,12 @@ import api from '../services/api'
 import { useAlert } from '../contexts/alert'
 import LargeButton from '../components/LargeButton'
 import UploadButton from '../components/UploadButton'
-
-type Teacher = {
-  name: string
-  image: string
-  email: string
-}
+import { Teacher } from '../contexts/auth'
 
 export default function TeacherInfo() {
   const history = useHistory()
   const { showAlert } = useAlert()
-  const [teacher, setTeacher] = useState<Teacher>({ name: '', image: '', email: '' })
+  const [teacher, setTeacher] = useState<Teacher>({ id: 0, name: '', image: '', email: '' })
   useEffect(() => { getCurrentTeacher().then(setTeacher) }, [])
   const classes = useStyles()
 
