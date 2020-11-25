@@ -13,7 +13,7 @@ import { Teacher } from '../contexts/auth'
 export default function TeacherInfo() {
   const history = useHistory()
   const { showAlert } = useAlert()
-  const [teacher, setTeacher] = useState<Teacher>({ id: 0, name: '', image: '', email: '' })
+  const [teacher, setTeacher] = useState<Teacher>({ id: 0, name: '', image: '', email: '', phone: '' })
   useEffect(() => { getCurrentTeacher().then(setTeacher) }, [])
   const classes = useStyles()
   return (
@@ -22,8 +22,11 @@ export default function TeacherInfo() {
       <Card className={classes.cardInfo}>
         <Typography variant='h3'>Suas informações</Typography>
         <TextInput name='Nome' label='Nome'
-          onChange= {e => { setTeacher({ ...teacher, name: e.target.value }) }} placeholder= 'Seu nome'
+          onChange={e => { setTeacher({ ...teacher, name: e.target.value }) }} placeholder='Seu nome'
           value={teacher.name} />
+        <TextInput name='Phone' label='Phone'
+          onChange={e => { setTeacher({ ...teacher, phone: e.target.value }) }} placeholder='Seu WhatsApp'
+          value={teacher.phone} />
         <UploadButton image={teacher.image} setImage={image => setTeacher({ ...teacher, image })}
           buttonText='Escolha sua foto de perfil'/>
         <LargeButton color='primary' onClick={() => handleCreateClass({ teacher, showAlert, history })}>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
-
+import { Link, Typography } from '@material-ui/core'
 import Header from '../components/Header'
 import api from '../services/api'
 import { Lesson } from './LessonList'
@@ -37,6 +36,9 @@ export default function LessonPage({ match }: Props) {
         <Typography variant='body1' color='textPrimary'>{lesson?.description}</Typography>
         <Typography variant='body1' color='textPrimary'>Com prof. {lesson?.teacher?.name}</Typography>
         <Typography variant='body1' color='textPrimary'>Contatos: {lesson?.teacher?.email}</Typography>
+        <Link color='primary' href={`https://api.whatsapp.com/send?phone=${lesson?.teacher?.phone}`}>
+          Contato por WhatsApp
+        </Link>
       </div>
     </div>
   )

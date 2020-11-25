@@ -1,3 +1,3 @@
 class TeacherSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :image
+  attributes :id, :name, :email, :image, :phone
 end

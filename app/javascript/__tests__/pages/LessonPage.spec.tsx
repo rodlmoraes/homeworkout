@@ -17,4 +17,5 @@ test('verify text', async () => {
   const { getByText } = render(<LessonPage match={{ params: { id: 1 } }}/>)
   getByText('Com prof.')
   getByText('Contatos:')
+  getByText('Contato por WhatsApp')
 })
