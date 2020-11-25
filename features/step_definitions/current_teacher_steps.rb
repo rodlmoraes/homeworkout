@@ -16,6 +16,5 @@ end
 
 Então('todas as aulas cadastradas devem aparecer') do
   expect(page).to have_content('Yoga')
-  expect(page).to have_content('https://www.youtube.com/link-aula')
   expect(page).to have_content('Venha ficar flexível')
 end

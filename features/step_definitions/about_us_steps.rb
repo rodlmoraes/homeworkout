@@ -11,7 +11,7 @@ Então('as informações dos desenvolvedores e da empresa devem ser mostradas') 
   expect(page).to have_content('Rodrigo')
   expect(page).to have_content('Rogério')
   expect(page).to have_content('Carolina')
-  expect(page).to have_content('Julia')
+  expect(page).to have_content('Júlia')
   expect(page).to have_content('Vinícius')
   expect(page).to have_content('João')
 end
