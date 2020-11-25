@@ -50,8 +50,9 @@ export default function LessonList() {
 }
 
 const listLessons = async (query: string) => {
-  const { data } = await api.get(`/lessons?query=${query}`)
-  return data
+  const res = await api.get('/lessons?query=' + query)
+
+  return res.data
 }
 
 const useStyles = makeStyles(() =>
