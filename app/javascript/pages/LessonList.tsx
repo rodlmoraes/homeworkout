@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import LessonCard from '../components/LessonCard'
 import api from '../services/api'
+import { Teacher } from '../contexts/auth'
 
 export type Lesson = {
   id: string
@@ -13,6 +14,7 @@ export type Lesson = {
   description: string
   link: string
   image: string
+  teacher: Teacher
 }
 
 export default function LessonList() {
@@ -29,9 +31,16 @@ export default function LessonList() {
           placeholder='Nome ou descrição da aula' value={query}
         />
         <Grid container spacing={3}>
-          {lessons.map(({ id, name, description, link, image }, key) => (
+          {lessons.map(({ id, name, description, link, image, teacher }, key) => (
             <Grid className={classes.lessonGrid} key={key} item xs={3}>
-              <LessonCard id={id} name={name} description={description} link={link} image={image} />
+              <LessonCard
+                id={id}
+                name={name}
+                description={description}
+                link={link}
+                image={image}
+                teacher={teacher}
+              />
             </Grid>
           ))}
         </Grid>

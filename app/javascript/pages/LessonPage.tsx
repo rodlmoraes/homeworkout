@@ -29,10 +29,14 @@ export default function LessonPage({ match }: Props) {
         <Typography variant='h3' color='textPrimary'>
           {lesson ? lesson.name : 'Aula não encontrada'}
         </Typography>
-        { lesson &&
-          <iframe width='560' height='315' src={lesson.link} frameBorder='0' allowFullScreen></iframe>
+        {lesson?.link
+          ? <iframe width='560' height='315' src={lesson.link} frameBorder='0' allowFullScreen></iframe>
+          : 'Aula sem video'
         }
+
         <Typography variant='body1' color='textPrimary'>{lesson?.description}</Typography>
+        <Typography variant='body1' color='textPrimary'>Com prof. {lesson?.teacher?.name}</Typography>
+        <Typography variant='body1' color='textPrimary'>Contatos: {lesson?.teacher?.email}</Typography>
       </div>
     </div>
   )
