@@ -51,8 +51,8 @@ const useStyles = makeStyles(() =>
   createStyles({
     root: {
       display: 'flex',
-      flexDirection: 'column',
       padding: '2rem',
+      flexDirection: 'column',
       alignItems: 'center',
       borderRadius: 15,
       margin: '4rem',
