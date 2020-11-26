@@ -25,7 +25,19 @@ export default function UpdateLessonForm({ match }: Props) {
   const { id } = match.params
 
   const [lesson, setLesson] = useState<Lesson>({
-    id, name: '', description: '', image: '', link: '', teacher: { email: '', id: 0, name: '', image: '' },
+    id,
+    name: '',
+    description: '',
+    image: '',
+    link: '',
+    teacher:
+      {
+        email: '',
+        id: 0,
+        name: '',
+        image: '',
+        phone: '',
+      },
   })
 
   useEffect(() => {

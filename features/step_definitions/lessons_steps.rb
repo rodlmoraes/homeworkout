@@ -1,5 +1,6 @@
 Dado('que o professor esteja cadastrado') do
   visit 'cadastrar'
+  fill_in 'Nome',	with: 'Test'
   fill_in 'Email',	with: 'test@test.com'
   fill_in 'Senha',	with: '123456'
   click_button 'Cadastrar'
@@ -20,6 +21,7 @@ end
 
 Dado('que existem aulas disponíveis') do
   visit 'cadastrar'
+  fill_in 'Nome',	with: 'Test'
   fill_in 'Email',	with: 'test@test.com'
   fill_in 'Senha',	with: '123456'
   click_button 'Cadastrar'
@@ -39,8 +41,11 @@ Quando('o usuário clicar no botão da aula') do
   click_button 'Detalhes'
 end
 
-Então('deverá aparecer o nome da aula') do
+Então('deverá aparecer a aula') do
   expect(page).to have_content('Yoga')
+  expect(page).to have_content('Venha ficar flexível')
+  expect(page).to have_content('test@test.com')
+  expect(page).to have_content('Contato por WhatsApp')
 end
 
 Quando('ele visita a página com suas aulas e clica no botão de deletar uma aula') do
@@ -66,6 +71,5 @@ end
 
 Então('a aula deve ser atualizada') do
   expect(page).to have_content('Skate')
-  expect(page).to have_content('https://www.youtube.com/skate')
   expect(page).to have_content('Venha ficar maneiro com skate')
 end

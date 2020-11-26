@@ -11,7 +11,8 @@ RSpec.describe Api::CurrentTeacherController, type: :controller, api: true do
     let(:email) { 'robinho@email.com' }
     let(:name) { 'robinho' }
     let(:image) { 'image' }
-    let(:params) { { teacher: { name: name, email: email, image: image }, id: 1 } }
+    let(:phone) { 'phone' }
+    let(:params) { { teacher: { name: name, email: email, image: image, phone: phone }, id: 1 } }
 
     before { put :update, params: params }
 

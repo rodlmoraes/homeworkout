@@ -7,17 +7,19 @@ RSpec.describe Teachers::Update, type: :service do
   let(:name) { 'Rodrigo' }
   let(:email) { 'rodrigo@email.com' }
   let(:image) { 'image' }
+  let(:phone) { '9182913' }
 
   let(:teacher_params) do
     {
       name: name,
       email: email,
       teacher: teacher,
-      image: image
+      image: image,
+      phone: phone
     }
   end
 
-  [:name, :email].each do |param|
+  [:name, :email, :image, :phone].each do |param|
     it "changes teacher #{param}" do
       expect { response }.to change(teacher, param)
     end

@@ -120,8 +120,8 @@ export default function Header() {
               ? teacher.image
                 ? teacher.image
                 : <img src={`https://ui-avatars.com/api/
-                  ?name=${teacher.name.replace(/ /g, '+')}
-                  &length=${Math.min(2, teacher.name.split(' ').length)}
+                  ?name=${teacher?.name?.replace(/ /g, '+')}
+                  &length=${Math.min(2, teacher?.name?.split(' ')?.length)}
                   &${avatarSettings}`} />
               : <AccountCircle />
             }
