@@ -43,8 +43,7 @@ export default function SignUp() {
 }
 const putName = async (name: string) => {
   try {
-    await api.put('/current_teacher/0', { teacher: { name: name, email: null, image: null } },
-    )
+    await api.put('/current_teacher/0', { teacher: { name: name, email: null, image: null, phone: null } })
   } catch {
     alert('Erro ao tentar atualizar informações!')
   }

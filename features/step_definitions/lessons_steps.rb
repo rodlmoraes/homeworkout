@@ -1,5 +1,6 @@
 Dado('que o professor esteja cadastrado') do
   visit 'cadastrar'
+  fill_in 'Nome',	with: 'Test'
   fill_in 'Email',	with: 'test@test.com'
   fill_in 'Senha',	with: '123456'
   click_button 'Cadastrar'
@@ -20,6 +21,7 @@ end
 
 Dado('que existem aulas disponíveis') do
   visit 'cadastrar'
+  fill_in 'Nome',	with: 'Test'
   fill_in 'Email',	with: 'test@test.com'
   fill_in 'Senha',	with: '123456'
   click_button 'Cadastrar'
