@@ -3,7 +3,7 @@
 Funcionalidade: Mostrar dados sobre a empresa e os desenvolvedores do site
 Como um usuário
 Gostaria de ver informações dos criadores da empresa
-Para conhece-la mais e ter mais confiança
+Para conhece-la mais e ter mais confiança, acessando uma página que me trouxesse essas informações
 
 Cenário: Exibição de informações dos desenvolvedores e da empresa
 Dado que um usuário queira ver as informações dos desenvolvedores e da empresa
