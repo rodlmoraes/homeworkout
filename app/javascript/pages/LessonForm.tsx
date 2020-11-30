@@ -30,7 +30,7 @@ export default function LessonForm() {
         />
         <TextInput name='Link da Aula'
           label='Link da Aula'
-          onChange= {e => { setLink(e.target.value) }}
+          onChange= {e => { setLink(e.target.value.replace(ytLinkRegex, 'https://www.youtube.com/embed/')) }}
           placeholder='Link do Youtube'
           value={link}
         />
@@ -49,6 +49,8 @@ export default function LessonForm() {
     </>
   )
 }
+
+const ytLinkRegex = /(https:\/\/)?www.youtube.com\/watch\?v=/g
 
 const handleCreateClass = async ({ lesson, showAlert, history }) => {
   try {
