@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import { useAuth } from '../contexts/auth'
+import { Teacher, useAuth } from '../contexts/auth'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -24,8 +24,6 @@ const useStyles = makeStyles(() =>
     },
   }),
 )
-
-const avatarSettings = 'rounded=true&size=32&bold=true&color=131419&background=e4e4e4'
 
 export default function Header() {
   const classes = useStyles()
@@ -115,19 +113,26 @@ export default function Header() {
           <Typography variant='subtitle1'>
             {teacher?.name}
           </Typography>
-          <IconButton data-testid='login-button' color='inherit' onClick={toLogin} >
-            { teacher && (teacher.name !== '' || teacher.image)
-              ? teacher.image
-                ? teacher.image
-                : <img src={`https://ui-avatars.com/api/
-                  ?name=${teacher?.name?.replace(/ /g, '+')}
-                  &length=${Math.min(2, teacher?.name?.split(' ')?.length)}
-                  &${avatarSettings}`} />
-              : <AccountCircle />
-            }
-          </IconButton>
+          <HeaderIconButton teacher={teacher} onClick={toLogin} />
         </div>
       </Toolbar>
     </AppBar>
   )
 }
+
+const HeaderIconButton = ({ teacher, onClick }: {teacher: Teacher, onClick: () => void}) => (
+  <IconButton data-testid='login-button' color='inherit' onClick={onClick} >
+    {
+      teacher && (teacher.name || teacher.image)
+        ? teacher.image
+          ? teacher.image
+          : <img src={avatarImageSrc(teacher)} />
+        : <AccountCircle />
+    }
+  </IconButton>
+)
+const avatarImageSrc = (teacher: Teacher) => `https://ui-avatars.com/api/
+?name=${teacher?.name?.replace(/ /g, '+')}
+&length=${Math.min(2, teacher?.name?.split(' ')?.length)}
+&${avatarSettings}`
+const avatarSettings = 'rounded=true&size=32&bold=true&color=131419&background=e4e4e4'

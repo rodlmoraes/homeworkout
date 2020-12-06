@@ -17,7 +17,7 @@ export default function TeacherInfo() {
   useEffect(() => { getCurrentTeacher().then(setTeacher) }, [])
   const classes = useStyles()
 
-  const handleCreateClass = async () => {
+  const updateTeacher = async () => {
     try {
       await api.put('/current_teacher/0', { teacher })
       showAlert('Informações atualizadas!')
@@ -40,7 +40,7 @@ export default function TeacherInfo() {
           value={teacher.phone} />
         <UploadButton image={teacher.image} setImage={image => setTeacher({ ...teacher, image })}
           buttonText='Escolha sua foto de perfil'/>
-        <LargeButton color='primary' onClick={handleCreateClass}>
+        <LargeButton color='primary' onClick={updateTeacher}>
           Salvar Cadastro
         </LargeButton>
       </Card>
