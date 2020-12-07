@@ -8,17 +8,30 @@ import Header from '../components/Header'
 import SecretInput from '../components/SecretInput'
 import LargeButton from '../components/LargeButton'
 
+let isValid = false
+
 export default function SignUp() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const classes = useStyles()
   const { signUp } = useAuth()
+  function checkValidity() {
+    isValid = /^[a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{3,20}\.[a-zA-Z]{2,5}$/g.test(email) &&
+    /^.{6,}$/g.test(password)
+  }
   return (
     <>
       <Header/>
       <Card className={classes.cardSingUp}>
         <Typography variant='h3'>Cadastre-se e adicione novas aulas!</Typography>
+        {!isValid &&
+          <div>
+            <p>Email ou senha inválidos!</p>
+            <br/>
+            <p>A senha deve conter no mínimo seis caracteres</p>
+          </div>
+        }
         <TextInput
           name='Nome'
           label='Nome'
@@ -29,13 +42,22 @@ export default function SignUp() {
         <TextInput
           name='Email'
           label='Email'
-          onChange= {e => { setEmail(e.target.value) }}
+          onChange= {e => {
+            setEmail(e.target.value)
+            checkValidity()
+          }}
           placeholder='Digite aqui seu email'
           value={email}
         />
-        <SecretInput onChange= {e => { setPassword(e.target.value) }} value={password} />
+        <SecretInput
+          onChange= {e => {
+            setPassword(e.target.value)
+            checkValidity()
+          }}
+          value={password}
+        />
         <LargeButton color='secondary' onClick={() => {
-          signUp(email, password).then(() => putName(name))
+          if (isValid) signUp(email, password).then(() => putName(name))
         }}>Cadastrar</LargeButton>
       </Card>
     </>
