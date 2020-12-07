@@ -7,6 +7,8 @@ import Header from '../components/Header'
 import SecretInput from '../components/SecretInput'
 import LargeButton from '../components/LargeButton'
 
+let isValid = false
+
 export default function Login() {
   const { signIn } = useAuth()
   const classes = useStyles()
@@ -17,15 +19,23 @@ export default function Login() {
       <Header/>
       <Card className={classes.cardLogin}>
         <Typography variant='h3'>Entre e adicione novas aulas!</Typography>
+        {!isValid &&
+          <p>Email ou senha inválidos!</p>
+        }
         <TextInput
           name='Email'
           label='Email'
-          onChange= {e => { setEmail(e.target.value) }}
+          onChange= {e => {
+            setEmail(e.target.value)
+            isValid = /^[a-zA-Z0-9]{3,20}@[a-zA-Z0-9]{3,20}.[a-zA-Z]{2,5}$/g.test(e.target.value)
+          }}
           placeholder='Digite aqui seu email'
           value={email}
         />
         <SecretInput onChange={e => { setPassword(e.target.value) }} value={password} />
-        <LargeButton color='secondary' onClick={() => signIn(email, password)}>Entrar</LargeButton>
+        <LargeButton color='secondary' onClick={() => {
+          if (isValid) signIn(email, password)
+        }}>Entrar</LargeButton>
       </Card>
     </>
   )
